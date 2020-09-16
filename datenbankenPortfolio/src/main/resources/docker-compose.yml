@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  _mysql_database:
+    image: mysql
+    container_name: bauwesen_mysql_database
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: bauwesen_database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - 3306:3306
+    volumes:
+    - bauwesen_mysql_database_data:/var/lib/mysql
+
+volumes:
+  bauwesen_mysql_database_data:
