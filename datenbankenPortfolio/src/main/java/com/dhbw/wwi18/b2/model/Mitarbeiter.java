@@ -12,17 +12,26 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "mitarbeiter")
+@Table(name = "Mitarbeiter")
 public class Mitarbeiter implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "mitarbeiter_id")
     private Long mitarbeiterId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "vorname")
+    private String vorname;
 
-    @Column(name = "mitarbeiterAlter")
-    private Integer alter;
+    @Column(name = "nachname")
+    private String nachname;
+
+    @Column(name = "berufsbezeichnung")
+    private String berufsbezeichnung;
+
+    @Column(name = "berufserfahrung")
+    private int berufserfahrung;
+
+    @Column(name = "gehalt")
+    private int gehalt;
 }

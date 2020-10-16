@@ -41,13 +41,16 @@ public class MitarbeiterIntegrationTest {
     @Test
     public void createMitarbeiter(){
         Mitarbeiter mitarbeiter = new Mitarbeiter();
-        mitarbeiter.setName("Matthias");
-        mitarbeiter.setAlter(20);
+       mitarbeiter.setVorname("Matthias");
+       mitarbeiter.setNachname("Nachname");
+       mitarbeiter.setBerufsbezeichnung("IT");
+       mitarbeiter.setGehalt(50000);
+       mitarbeiter.setBerufserfahrung(20);
 
         Mitarbeiter returnedMitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
 
-        assertThat(returnedMitarbeiter.getAlter(), is(20));
-        assertThat(returnedMitarbeiter.getName(), is("Matthias"));
+        assertThat(returnedMitarbeiter.getVorname(), is("Matthias"));
+        assertThat(returnedMitarbeiter.getGehalt(), is(50000));
         assertNotNull(returnedMitarbeiter.getMitarbeiterId());
     }
 }
