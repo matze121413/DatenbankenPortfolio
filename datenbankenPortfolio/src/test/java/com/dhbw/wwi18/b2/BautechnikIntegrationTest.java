@@ -38,7 +38,7 @@ public class BautechnikIntegrationTest {
     }
 
     @Test
-    public void createBautechnik() throws InterruptedException {
+    public void createBautechnik() {
         Mitarbeiter mitarbeiter = new Mitarbeiter();
         mitarbeiter.setVorname("Matthias");
         mitarbeiter.setNachname("Nachname");
@@ -86,7 +86,6 @@ public class BautechnikIntegrationTest {
 
 
         bauarbeiter = bauarbeiterRepository.findById(bauarbeiter.getMitarbeiterId());
-        Thread.sleep(5000);
         bautechnik = bautechnikRepository.findById(bautechnik.getBautechnikId());
         assertNotNull(bautechnik.getBautechnikId());
         assertNotNull(bauarbeiter.getMitarbeiterId());

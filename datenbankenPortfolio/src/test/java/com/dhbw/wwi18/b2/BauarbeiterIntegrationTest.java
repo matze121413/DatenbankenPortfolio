@@ -26,8 +26,9 @@ public class BauarbeiterIntegrationTest {
 
 
     @AfterClass
-    public static void done() {
+    public static void afterAll() {
         mitarbeiterRepository.closeConnection();
+        bauarbeiterRepository.closeConnection();
     }
 
     @Test
