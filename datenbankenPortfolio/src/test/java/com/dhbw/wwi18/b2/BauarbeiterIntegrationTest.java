@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BauarbeiterIntegrationTest {
@@ -32,7 +33,46 @@ public class BauarbeiterIntegrationTest {
     }
 
     @Test
-    public void createMitarbeiter(){
+    public void createBauarbeiter(){
+        Mitarbeiter mitarbeiter = createNewMitarbeiter();
+        createNewBauarbeiter(mitarbeiter);
+    }
+
+    @Test
+    public void getBauarbeiter(){
+        //man muss zunächst einen Bauarbeiter erstellen, bevor man ihn auslesen kann
+        //alles andere würde Wiederholbarkeit verletzen
+        Mitarbeiter mitarbeiter = createNewMitarbeiter();
+        Bauarbeiter bauarbeiter = createNewBauarbeiter(mitarbeiter);
+        Bauarbeiter savedBauarbeiter = bauarbeiterRepository.findById(bauarbeiter.getMitarbeiterId());
+        assertThat(savedBauarbeiter, is(bauarbeiter));
+
+    }
+
+    @Test
+    public void updateBauarbeiter(){
+        Mitarbeiter mitarbeiter = createNewMitarbeiter();
+        Bauarbeiter bauarbeiter = createNewBauarbeiter(mitarbeiter);
+        bauarbeiter.setSchichtleiter(true);
+        Bauarbeiter updatedBauarbeiter = bauarbeiterRepository.updateWithMerge(bauarbeiter);
+
+        assertThat(updatedBauarbeiter, is(bauarbeiter));
+    }
+
+    @Test
+    public void deleteMitarbeiterDeletesBauarbeiter(){
+        Mitarbeiter mitarbeiter = createNewMitarbeiter();
+        Bauarbeiter bauarbeiter = createNewBauarbeiter(mitarbeiter);
+        mitarbeiterRepository.deleteEntity(mitarbeiter);
+
+        Mitarbeiter deletedMitarbeiter = mitarbeiterRepository.findById(mitarbeiter.getMitarbeiterId());
+        Bauarbeiter deletedBauarbeiter = bauarbeiterRepository.findById(bauarbeiter.getMitarbeiterId());
+        assertNull(deletedMitarbeiter);
+        assertNull(deletedBauarbeiter);
+
+    }
+
+    private Mitarbeiter createNewMitarbeiter(){
         Mitarbeiter mitarbeiter = new Mitarbeiter();
         mitarbeiter.setVorname("Matthias");
         mitarbeiter.setNachname("Nachname");
@@ -46,9 +86,13 @@ public class BauarbeiterIntegrationTest {
         assertThat(mitarbeiter.getGehalt(), is(50000));
         assertNotNull(mitarbeiter.getMitarbeiterId());
 
+        return mitarbeiter;
+    }
+
+    private Bauarbeiter createNewBauarbeiter(Mitarbeiter savedMitarbeiter){
         Bauarbeiter bauarbeiter= new Bauarbeiter();
-        bauarbeiter.setMitarbeiter(mitarbeiter);
-        bauarbeiter.setMitarbeiterId(mitarbeiter.getMitarbeiterId());
+        bauarbeiter.setMitarbeiter(savedMitarbeiter);
+        bauarbeiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
         bauarbeiter.setArbeitsschicht("Frühschicht");
         bauarbeiter.setFachgebiet("Dachdecker");
         bauarbeiter.setGewerkschaft(true);
@@ -58,8 +102,10 @@ public class BauarbeiterIntegrationTest {
         bauarbeiter = bauarbeiterRepository.createEntity(bauarbeiter);
 
         assertThat(bauarbeiter.getArbeitsschicht(), is("Frühschicht"));
-        assertThat(bauarbeiter.getMitarbeiterId(), is(mitarbeiter.getMitarbeiterId()));
+        assertThat(bauarbeiter.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));
 
-
+        return bauarbeiter;
     }
+
+
 }

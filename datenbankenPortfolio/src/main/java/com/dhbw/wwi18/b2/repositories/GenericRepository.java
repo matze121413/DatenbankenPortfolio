@@ -23,14 +23,20 @@ public abstract class GenericRepository<T, ID extends Serializable> {
 
 
     public T findById( ID id ) {
-        return em.find( entityClass, id );
+        T entity=  em.find( entityClass, id );
+        //führt sonst dazu, dass Entities nicht gecacht werden
+        // Cacheing kann bei Beziehungen zwischen Entites zu Problemen führen kann
+        em.clear();
+        return entity;
     }
 
 
     public List<T> findAll() {
         CriteriaQuery<T> c = em.getCriteriaBuilder().createQuery( entityClass );
         c.select( c.from( entityClass ) );
-        return em.createQuery( c ).getResultList();
+        List<T> entityList = em.createQuery( c ).getResultList();
+        em.clear();
+        return entityList;
     }
 
 
@@ -45,6 +51,7 @@ public abstract class GenericRepository<T, ID extends Serializable> {
         }
 
         transaction.commit();
+        em.clear();
     }
 
 
@@ -55,6 +62,7 @@ public abstract class GenericRepository<T, ID extends Serializable> {
         //em.refresh( entity );
         transaction.commit();
 
+        em.clear();
         return entity;
     }
 
@@ -64,7 +72,7 @@ public abstract class GenericRepository<T, ID extends Serializable> {
         transaction.begin();
         T result = em.merge( entity );
         transaction.commit();
-
+        em.clear();
         return result;
     }
 
@@ -73,7 +81,7 @@ public abstract class GenericRepository<T, ID extends Serializable> {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         transaction.commit();
-
+        em.clear();
         return entity;
     }
 
