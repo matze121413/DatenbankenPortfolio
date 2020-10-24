@@ -74,16 +74,18 @@ public class BauarbeiterIntegrationTest {
 
     private Mitarbeiter createNewMitarbeiter(){
         Mitarbeiter mitarbeiter = new Mitarbeiter();
-        mitarbeiter.setVorname("Matthias");
-        mitarbeiter.setNachname("Nachname");
-        mitarbeiter.setBerufsbezeichnung("IT");
-        mitarbeiter.setGehalt(50000);
+        mitarbeiter.setVorname("Horst");
+        mitarbeiter.setNachname("Seehofer");
+        mitarbeiter.setBerufsbezeichnung("Laufbursche");
+        mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
         mitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
 
-        assertThat(mitarbeiter.getVorname(), is("Matthias"));
-        assertThat(mitarbeiter.getGehalt(), is(50000));
+        //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
+        assertThat(mitarbeiter.getVorname(), is("Horst"));
+        assertThat(mitarbeiter.getGehalt(), is(3000));
+        //Die MitarbeiterId sollte nicht statische erzeugt werden, kann aber nie null sein
         assertNotNull(mitarbeiter.getMitarbeiterId());
 
         return mitarbeiter;

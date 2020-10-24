@@ -9,6 +9,7 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -50,7 +51,7 @@ public class Bauarbeiter {
     @JoinColumn(name = "mitarbeiter_id")
     private Mitarbeiter mitarbeiter;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Bauarbeiter_verwendet_Bautechnik",
             joinColumns = { @JoinColumn(name = "mitarbeiter_id") },
