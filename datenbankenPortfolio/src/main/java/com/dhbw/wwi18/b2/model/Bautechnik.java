@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,11 +51,21 @@ public class Bautechnik {
     @Column
     private int tagespreis;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name = "Bauarbeiter_verwendet_Bautechnik",
             joinColumns = { @JoinColumn(name = "bautechnik_id") },
             inverseJoinColumns = { @JoinColumn(name = "mitarbeiter_id") }
     )
     private List<Bauarbeiter> bauarbeiterList = new ArrayList<>();
+
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(
+            name = "Bauprojekt_benoetigt_Bautechnik",
+            joinColumns = { @JoinColumn(name = "bautechnik_id") },
+            inverseJoinColumns = { @JoinColumn(name = "bauprojekt_id") }
+    )
+    private List<Bauprojekt> bauprojektList = new ArrayList<>();
 }

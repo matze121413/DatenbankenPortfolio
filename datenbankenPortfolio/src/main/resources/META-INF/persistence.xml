@@ -7,6 +7,7 @@
         <class>com.dhbw.wwi18.b2.model.Bautechnik</class>
         <class>com.dhbw.wwi18.b2.model.Entsorgungsunternehmen</class>
         <class>com.dhbw.wwi18.b2.model.Bauschutt</class>
+        <class>com.dhbw.wwi18.b2.model.Bauprojekt</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
