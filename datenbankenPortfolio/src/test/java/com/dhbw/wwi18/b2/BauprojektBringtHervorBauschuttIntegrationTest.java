@@ -13,7 +13,6 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BauprojektBringtHervorBauschuttIntegrationTest {
     private static BauprojektRepository bauprojektRepository;
@@ -79,10 +78,8 @@ public class BauprojektBringtHervorBauschuttIntegrationTest {
         bauprojekt.setGewinn(500000);
         bauprojekt.setKosten(250000);
 
-        Bauprojekt savedBauprojekt = bauprojektRepository.createEntity(bauprojekt);
-        assertNotNull(savedBauprojekt.getBauprojektId());
-        assertThat(savedBauprojekt.getEndDatum(), is(20230514));
-        return savedBauprojekt;
+        return bauprojektRepository.createEntity(bauprojekt);
+
     }
 
     private Bauschutt createNewBauschutt(){
@@ -92,9 +89,6 @@ public class BauprojektBringtHervorBauschuttIntegrationTest {
         bauschutt.setKilopreis(3);
         bauschutt.setMenge(7);
 
-        Bauschutt savedBauschutt = bauschuttRepository.createEntity(bauschutt);
-        assertNotNull(savedBauschutt.getBauschuttId());
-        assertThat(savedBauschutt.getArt(), is("Ziegel"));
-        return savedBauschutt;
+        return bauschuttRepository.createEntity(bauschutt);
     }
 }
