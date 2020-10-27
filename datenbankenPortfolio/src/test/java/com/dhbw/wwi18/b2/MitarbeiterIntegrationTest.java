@@ -9,6 +9,7 @@ import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -28,17 +29,53 @@ public class MitarbeiterIntegrationTest {
 
     @Test
     public void createMitarbeiter() {
+        createNewMitarbeiter();
+    }
+
+    @Test
+    public void getMitarbeiter() {
+        //man muss zunächst einen Werkstoff erstellen, bevor man ihn auslesen kann
+        //alles andere würde Wiederholbarkeit verletzen
+        Mitarbeiter mitarbeiter = createNewMitarbeiter();
+        Mitarbeiter savedMitarbeiter = mitarbeiterRepository.findById(mitarbeiter.getMitarbeiterId());
+        assertThat(savedMitarbeiter, is(mitarbeiter));
+    }
+
+    @Test
+    public void updateMitarbeiter() {
+        Mitarbeiter mitarbeiter = createNewMitarbeiter();
+        mitarbeiter.setGehalt(3200);
+        Mitarbeiter updatedMitarbeiter = mitarbeiterRepository.updateWithMerge(mitarbeiter);
+
+        assertThat(updatedMitarbeiter, is(mitarbeiter));
+    }
+
+    @Test
+    public void deleteWerkstoff() {
+        Mitarbeiter mitarbeiter = createNewMitarbeiter();
+        mitarbeiterRepository.deleteEntity(mitarbeiter);
+
+        Mitarbeiter deletedMitarbeiter = mitarbeiterRepository.findById(mitarbeiter.getMitarbeiterId());
+        assertNull(deletedMitarbeiter);
+
+    }
+
+    private Mitarbeiter createNewMitarbeiter() {
         Mitarbeiter mitarbeiter = new Mitarbeiter();
-        mitarbeiter.setVorname("Matthias");
-        mitarbeiter.setNachname("Nachname");
-        mitarbeiter.setBerufsbezeichnung("IT");
-        mitarbeiter.setGehalt(50000);
+        mitarbeiter.setVorname("Horst");
+        mitarbeiter.setNachname("Seehofer");
+        mitarbeiter.setBerufsbezeichnung("Laufbursche");
+        mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        Mitarbeiter returnedMitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
+        mitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
 
-        assertThat(returnedMitarbeiter.getVorname(), is("Matthias"));
-        assertThat(returnedMitarbeiter.getGehalt(), is(50000));
-        assertNotNull(returnedMitarbeiter.getMitarbeiterId());
+        //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
+        assertThat(mitarbeiter.getVorname(), is("Horst"));
+        assertThat(mitarbeiter.getGehalt(), is(3000));
+        //Die MitarbeiterId sollte nicht statische erzeugt werden, kann aber nie null sein
+        assertNotNull(mitarbeiter.getMitarbeiterId());
+
+        return mitarbeiter;
     }
 }
