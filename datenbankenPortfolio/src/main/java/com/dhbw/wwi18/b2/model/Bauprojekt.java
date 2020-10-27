@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Bauprojekt")
+@Table
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = {"bauschuttList", "mitarbeiterList","bautechnikList","werkstoffList"})
@@ -33,19 +33,14 @@ public class Bauprojekt {
     @Column(name = "bauprojekt_id")
     private Long bauprojektId;
 
-    @Column
     private int startDatum;
 
-    @Column
     private int endDatum;
 
-    @Column
     private int gewinn;
 
-    @Column
     private int kosten;
 
-    @Column
     private int frist;
 
     @ManyToMany

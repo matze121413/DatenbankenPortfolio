@@ -1,6 +1,5 @@
 package com.dhbw.wwi18.b2.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Bauarbeiter")
+@Table
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = "bautechnikList")
@@ -30,22 +29,17 @@ public class Bauarbeiter {
 
     @Id
     @Column(name = "mitarbeiter_id")
-    Long mitarbeiterId;
+    private Long mitarbeiterId;
 
-    @Column
-    boolean schichtleiter;
+    private boolean schichtleiter;
 
-    @Column
-    String arbeitsschicht;
+    private String arbeitsschicht;
 
-    @Column
-    int tarif;
+    private int tarif;
 
-    @Column
-    String fachgebiet;
+    private String fachgebiet;
 
-    @Column
-    boolean gewerkschaft;
+    private boolean gewerkschaft;
 
     @OneToOne
     @JoinColumn(name = "mitarbeiter_id")

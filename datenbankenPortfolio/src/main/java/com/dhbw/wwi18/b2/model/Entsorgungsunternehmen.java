@@ -11,25 +11,20 @@ import javax.persistence.Table;
 
 @Entity
 @Data
-@Table(name = "Entsorgungsunternehmen")
+@Table
 public class Entsorgungsunternehmen {
     @Id
     @Column(name = "entsorgung_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long entsorgungId;
 
-    @Column
     private String name;
 
-    @Column
     private String telefonnummer;
 
-    @Column
     private String abholzeit;
 
-    @Column
     private int abholtag;
 
-    @Column
     private int erfahrung;
 }

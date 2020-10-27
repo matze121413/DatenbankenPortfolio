@@ -1,6 +1,5 @@
 package com.dhbw.wwi18.b2.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,19 +32,14 @@ public class Mitarbeiter implements Serializable {
     @Column(name = "mitarbeiter_id")
     private Long mitarbeiterId;
 
-    @Column(name = "vorname")
     private String vorname;
 
-    @Column(name = "nachname")
     private String nachname;
 
-    @Column(name = "berufsbezeichnung")
     private String berufsbezeichnung;
 
-    @Column(name = "berufserfahrung")
     private int berufserfahrung;
 
-    @Column(name = "gehalt")
     private int gehalt;
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -1,6 +1,10 @@
 package com.dhbw.wwi18.b2.model;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,24 +21,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@Table(name = "Bauschutt")
+@Table
+@Getter
+@Setter
+@EqualsAndHashCode(exclude = "bauprojektList")
+@ToString(exclude = "bauprojektList")
+@NoArgsConstructor
 public class Bauschutt {
     @Id
     @Column(name = "bauschutt_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bauschuttId;
 
-    @Column
     private String art;
 
-    @Column
     private int gewicht;
 
-    @Column
     private int kilopreis;
 
-    @Column
     private int menge;
 
     @ManyToOne

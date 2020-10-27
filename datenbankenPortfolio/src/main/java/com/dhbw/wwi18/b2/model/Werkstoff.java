@@ -20,13 +20,13 @@ import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(name="Werkstoff")
+@Entity
+@Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = "bauprojektList")
-@ToString(exclude = "bauprojektList")
+@EqualsAndHashCode(exclude = {"bauprojektList", "werkstofflieferantList"})
+@ToString(exclude = {"bauprojektList", "werkstofflieferantList"})
 @NoArgsConstructor
-@Entity
 public class Werkstoff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
