@@ -16,8 +16,8 @@ import java.util.List;
 @Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"anfrageList"})
-@ToString(exclude = {"anfrageList"})
+@EqualsAndHashCode
+@ToString
 @NoArgsConstructor
 public class Bauunternehmen {
     @Id
@@ -35,12 +35,4 @@ public class Bauunternehmen {
 
     private String plz;
 
-    @OneToMany
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(
-            name = "Bauunternehmen_erhaelt_Anfrage",
-            joinColumns = { @JoinColumn(name = "unternehmen_id") },
-            inverseJoinColumns = { @JoinColumn(name = "anfrage_id") }
-    )
-    private List<Anfrage> anfrageList = new ArrayList<>();
 }

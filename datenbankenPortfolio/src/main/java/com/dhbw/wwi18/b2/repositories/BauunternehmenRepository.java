@@ -1,6 +1,9 @@
 package com.dhbw.wwi18.b2.repositories;
 
-public class BauunternehmenRepository extends GenericRepository<BauunternehmenRepository, Long>
+import com.dhbw.wwi18.b2.model.Bauunternehmen;
+
+public class BauunternehmenRepository extends GenericRepository<Bauunternehmen, Long>
 {
-    public BauunternehmenRepository(){super(BauunternehmenRepository.class);}
+    public BauunternehmenRepository(){super(Bauunternehmen.class);}
 }
+

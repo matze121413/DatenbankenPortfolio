@@ -1,8 +1,6 @@
 package com.dhbw.wwi18.b2;
 
-import com.dhbw.wwi18.b2.model.Bautechnik;
 import com.dhbw.wwi18.b2.model.Bauunternehmen;
-import com.dhbw.wwi18.b2.repositories.BautechnikRepository;
 import com.dhbw.wwi18.b2.repositories.BauunternehmenRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -39,7 +37,7 @@ public class BauunternehmenIntegrationTest {
         //man muss zunächst einen Bauarbeiter erstellen, bevor man ihn auslesen kann
         //alles andere würde Wiederholbarkeit verletzen
         Bauunternehmen bauunternehmen = createNewBauunternehmen();
-        Bauunternehmen savedBauunternehmen = bauunternehmenRepository.findById(bauunternehmen.getBauunternehmenId());
+        Bauunternehmen savedBauunternehmen = bauunternehmenRepository.findById(bauunternehmen.getUnternehmenId());
         assertThat(savedBauunternehmen, is(bauunternehmen));
     }
 
@@ -57,7 +55,7 @@ public class BauunternehmenIntegrationTest {
         Bauunternehmen bauunternehmen = createNewBauunternehmen();
         bauunternehmenRepository.deleteEntity(bauunternehmen);
 
-        Bauunternehmen deletedBauunternehmen = bauunternehmenRepository.findById(bauunternehmen.getBauunternehmenId());
+        Bauunternehmen deletedBauunternehmen = bauunternehmenRepository.findById(bauunternehmen.getUnternehmenId());
         assertNull(deletedBauunternehmen);
 
     }
@@ -72,7 +70,7 @@ public class BauunternehmenIntegrationTest {
 
         Bauunternehmen savedBauunternehmen = bauunternehmenRepository.createEntity(bauunternehmen);
 
-        assertNotNull(savedBauunternehmen.getBauunternehmenId());
+        assertNotNull(savedBauunternehmen.getUnternehmenId());
         assertThat(bauunternehmen.getName(), is("könnenwirdasschaffen"));
         return savedBauunternehmen;
     }

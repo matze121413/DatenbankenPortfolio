@@ -10,6 +10,8 @@
         <class>com.dhbw.wwi18.b2.model.Bauprojekt</class>
         <class>com.dhbw.wwi18.b2.model.Werkstoff</class>
         <class>com.dhbw.wwi18.b2.model.Werkstofflieferant</class>
+        <class>com.dhbw.wwi18.b2.model.Bauunternehmen</class>
+        <class>com.dhbw.wwi18.b2.model.Anfrage</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
