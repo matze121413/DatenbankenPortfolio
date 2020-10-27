@@ -2,9 +2,9 @@ package com.dhbw.wwi18.b2;
 
 import com.dhbw.wwi18.b2.model.Werkstoff;
 import com.dhbw.wwi18.b2.repositories.WerkstoffRepository;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class WerkstoffIntegrationTest {
-    private static WerkstoffRepository werkstoffRepository;
+    private WerkstoffRepository werkstoffRepository;
 
     @BeforeAll
     public void setup() {
@@ -22,7 +22,7 @@ public class WerkstoffIntegrationTest {
     }
 
     @AfterAll
-    public static void afterAll() {
+    public void afterAll() {
         werkstoffRepository.closeConnection();
     }
 

@@ -9,6 +9,7 @@
         <class>com.dhbw.wwi18.b2.model.Bauschutt</class>
         <class>com.dhbw.wwi18.b2.model.Bauprojekt</class>
         <class>com.dhbw.wwi18.b2.model.Werkstoff</class>
+        <class>com.dhbw.wwi18.b2.model.Werkstofflieferant</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>

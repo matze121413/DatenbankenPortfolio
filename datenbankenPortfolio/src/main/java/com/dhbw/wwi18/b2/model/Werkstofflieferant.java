@@ -20,42 +20,39 @@ import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(name="Werkstoff")
+@Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = "bauprojektList")
-@ToString(exclude = "bauprojektList")
+@EqualsAndHashCode(exclude = "werkstoffList")
+@ToString(exclude = "werkstoffList")
 @NoArgsConstructor
 @Entity
-public class Werkstoff {
+public class Werkstofflieferant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "werkstoff_id")
-    private Long werkstoffId;
+    @Column(name = "lieferant_id")
+    private Long lieferantId;
 
-    private String art;
+    private int erfahrung;
 
-    private int gewicht;
+    private String telefonnummer;
 
-    private int kilopreis;
+    private String name;
 
-    private int menge;
+    @Column(name = "straße")
+    private String strasse;
 
-    @ManyToMany
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(
-            name = "Bauprojekt_benoetigt_Werkstoff",
-            joinColumns = {@JoinColumn(name = "werkstoff_id")},
-            inverseJoinColumns = {@JoinColumn(name = "bauprojekt_id")}
-    )
-    private List<Bauprojekt> bauprojektList = new ArrayList<>();
+    private String ort;
+
+    private String plz;
 
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name = "Werkstofflieferant_liefert_Werkstoff",
-            joinColumns = {@JoinColumn(name = "werkstoff_id")},
-            inverseJoinColumns = {@JoinColumn(name = "lieferant_id")}
+            joinColumns = {@JoinColumn(name = "lieferant_id")},
+            inverseJoinColumns = {@JoinColumn(name = "werkstoff_id")}
     )
-    private List<Werkstofflieferant> werkstofflieferantList = new ArrayList<>();
+    private List<Werkstoff> werkstoffList = new ArrayList<>();
+
 }
