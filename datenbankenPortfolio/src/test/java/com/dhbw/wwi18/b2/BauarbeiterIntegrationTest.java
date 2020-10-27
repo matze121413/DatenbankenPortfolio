@@ -4,36 +4,38 @@ import com.dhbw.wwi18.b2.model.Bauarbeiter;
 import com.dhbw.wwi18.b2.model.Mitarbeiter;
 import com.dhbw.wwi18.b2.repositories.BauarbeiterRepository;
 import com.dhbw.wwi18.b2.repositories.MitarbeiterRepository;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BauarbeiterIntegrationTest {
 
-    private static BauarbeiterRepository bauarbeiterRepository;
+    private BauarbeiterRepository bauarbeiterRepository;
     private static MitarbeiterRepository mitarbeiterRepository;
 
-    @BeforeClass
-    public static void setup() {
+    @BeforeAll
+    public void setup() {
         bauarbeiterRepository = new BauarbeiterRepository();
         mitarbeiterRepository = new MitarbeiterRepository();
     }
 
 
-
-    @AfterClass
-    public static void afterAll() {
+    @AfterAll
+    public void afterAll() {
         mitarbeiterRepository.closeConnection();
         bauarbeiterRepository.closeConnection();
     }
 
     @Test
-    public void createBauarbeiter(){
+    public void createBauarbeiter() {
         Mitarbeiter mitarbeiter = createNewMitarbeiter();
         createNewBauarbeiter(mitarbeiter);
     }

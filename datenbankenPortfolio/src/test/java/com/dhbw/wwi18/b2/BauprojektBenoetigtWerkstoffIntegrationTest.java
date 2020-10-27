@@ -20,13 +20,12 @@ public class BauprojektBenoetigtWerkstoffIntegrationTest {
 
     private BauprojektRepository bauprojektRepository;
     private WerkstoffRepository werkstoffRepository;
+
     @BeforeAll
     public  void setup() {
         bauprojektRepository = new BauprojektRepository();
         werkstoffRepository = new WerkstoffRepository();
     }
-
-
 
     @AfterAll
     public void done() {

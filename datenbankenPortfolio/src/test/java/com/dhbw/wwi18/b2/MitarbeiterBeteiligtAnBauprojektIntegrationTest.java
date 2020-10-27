@@ -4,9 +4,10 @@ import com.dhbw.wwi18.b2.model.Bauprojekt;
 import com.dhbw.wwi18.b2.model.Mitarbeiter;
 import com.dhbw.wwi18.b2.repositories.BauprojektRepository;
 import com.dhbw.wwi18.b2.repositories.MitarbeiterRepository;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,18 +16,19 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class MitarbeiterBeteiligtAnBauprojektIntegrationTest {
+
     private static BauprojektRepository bauprojektRepository;
     private static MitarbeiterRepository mitarbeiterRepository;
-    @BeforeClass
+
+    @BeforeAll
     public static void setup() {
         bauprojektRepository = new BauprojektRepository();
         mitarbeiterRepository = new MitarbeiterRepository();
     }
 
-
-
-    @AfterClass
+    @AfterAll
     public static void done() {
         bauprojektRepository.closeConnection();
         mitarbeiterRepository.closeConnection();

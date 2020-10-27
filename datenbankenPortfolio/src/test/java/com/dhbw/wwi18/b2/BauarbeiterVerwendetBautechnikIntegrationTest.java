@@ -6,9 +6,10 @@ import com.dhbw.wwi18.b2.model.Mitarbeiter;
 import com.dhbw.wwi18.b2.repositories.BauarbeiterRepository;
 import com.dhbw.wwi18.b2.repositories.BautechnikRepository;
 import com.dhbw.wwi18.b2.repositories.MitarbeiterRepository;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,21 +17,22 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BauarbeiterVerwendetBautechnikIntegrationTest {
-    private static MitarbeiterRepository mitarbeiterRepository;
-    private static BauarbeiterRepository bauarbeiterRepository;
-    private static BautechnikRepository bautechnikRepository;
-    @BeforeClass
-    public static void setup() {
+
+    private MitarbeiterRepository mitarbeiterRepository;
+    private BauarbeiterRepository bauarbeiterRepository;
+    private BautechnikRepository bautechnikRepository;
+
+    @BeforeAll
+    public void setup() {
         bauarbeiterRepository = new BauarbeiterRepository();
         mitarbeiterRepository = new MitarbeiterRepository();
         bautechnikRepository = new BautechnikRepository();
     }
 
-
-
-    @AfterClass
-    public static void done() {
+    @AfterAll
+    public void done() {
         mitarbeiterRepository.closeConnection();
         bauarbeiterRepository.closeConnection();
         bautechnikRepository.closeConnection();

@@ -4,9 +4,10 @@ import com.dhbw.wwi18.b2.model.Bauprojekt;
 import com.dhbw.wwi18.b2.model.Bauschutt;
 import com.dhbw.wwi18.b2.repositories.BauprojektRepository;
 import com.dhbw.wwi18.b2.repositories.BauschuttRepository;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,19 +15,21 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BauprojektBringtHervorBauschuttIntegrationTest {
-    private static BauprojektRepository bauprojektRepository;
-    private static BauschuttRepository bauschuttRepository;
-    @BeforeClass
-    public static void setup() {
+
+    private BauprojektRepository bauprojektRepository;
+    private BauschuttRepository bauschuttRepository;
+
+    @BeforeAll
+    public void setup() {
         bauprojektRepository = new BauprojektRepository();
         bauschuttRepository = new BauschuttRepository();
     }
 
 
-
-    @AfterClass
-    public static void done() {
+    @AfterAll
+    public void done() {
         bauprojektRepository.closeConnection();
         bauschuttRepository.closeConnection();
     }

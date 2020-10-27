@@ -4,9 +4,9 @@ import com.dhbw.wwi18.b2.model.Bauschutt;
 import com.dhbw.wwi18.b2.model.Entsorgungsunternehmen;
 import com.dhbw.wwi18.b2.repositories.BauschuttRepository;
 import com.dhbw.wwi18.b2.repositories.EntsorgungsunternehmenRepository;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,15 +16,14 @@ public class EntsorgungsunternehmenEntsorgtBauschuttIntegrationTest {
     private static EntsorgungsunternehmenRepository entsorgungsunternehmenRepository;
     private static BauschuttRepository bauschuttRepository;
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() {
         entsorgungsunternehmenRepository = new EntsorgungsunternehmenRepository();
         bauschuttRepository = new BauschuttRepository();
     }
 
 
-
-    @AfterClass
+    @AfterAll
     public static void done() {
         entsorgungsunternehmenRepository.closeConnection();
         bauschuttRepository.closeConnection();

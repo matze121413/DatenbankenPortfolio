@@ -17,6 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class WerkstofflieferantLiefertWerkstoffIntegrationTest {
+
     private WerkstofflieferantRepository werkstofflieferantRepository;
     private WerkstoffRepository werkstoffRepository;
 

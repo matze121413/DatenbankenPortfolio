@@ -4,9 +4,10 @@ import com.dhbw.wwi18.b2.model.Bauprojekt;
 import com.dhbw.wwi18.b2.model.Bautechnik;
 import com.dhbw.wwi18.b2.repositories.BauprojektRepository;
 import com.dhbw.wwi18.b2.repositories.BautechnikRepository;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,19 +16,20 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BauprojektBenoetigtBautechnikIntegrationTest {
-    private static BauprojektRepository bauprojektRepository;
-    private static BautechnikRepository bautechnikRepository;
-    @BeforeClass
-    public static void setup() {
+    private BauprojektRepository bauprojektRepository;
+    private BautechnikRepository bautechnikRepository;
+
+    @BeforeAll
+    public void setup() {
         bauprojektRepository = new BauprojektRepository();
         bautechnikRepository = new BautechnikRepository();
     }
 
 
-
-    @AfterClass
-    public static void done() {
+    @AfterAll
+    public void done() {
         bauprojektRepository.closeConnection();
         bautechnikRepository.closeConnection();
     }

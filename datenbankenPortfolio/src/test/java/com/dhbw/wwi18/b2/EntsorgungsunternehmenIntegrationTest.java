@@ -2,26 +2,27 @@ package com.dhbw.wwi18.b2;
 
 import com.dhbw.wwi18.b2.model.Entsorgungsunternehmen;
 import com.dhbw.wwi18.b2.repositories.EntsorgungsunternehmenRepository;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class EntsorgungsunternehmenIntegrationTest {
     private static EntsorgungsunternehmenRepository entsorgungsunternehmenRepository;
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() {
         entsorgungsunternehmenRepository = new EntsorgungsunternehmenRepository();
     }
 
 
-
-    @AfterClass
+    @AfterAll
     public static void afterAll() {
         entsorgungsunternehmenRepository.closeConnection();
     }
