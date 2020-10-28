@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,4 +56,10 @@ public class Werkstofflieferant {
     )
     private List<Werkstoff> werkstoffList = new ArrayList<>();
 
+    @ManyToOne
+    @JoinTable(
+            name = "Projektleiter_kontaktiert_Werkstofflieferant",
+            joinColumns = {@JoinColumn(name = "lieferant_id")},
+            inverseJoinColumns = {@JoinColumn(name = "mitarbeiter_id")})
+    private Projektleiter projektleiter;
 }
