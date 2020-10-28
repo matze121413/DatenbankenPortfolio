@@ -70,7 +70,7 @@ public class KundeErstelltAnfrageIntegrationTest {
 
     private Anfrage createNewAnfrage(){
         Anfrage anfrage = new Anfrage();
-        anfrage.setAnzRaueme(4);
+        anfrage.setAnzRaeume(4);
         anfrage.setStrasse("Binger");
         anfrage.setOrt("Mühlheim");
         anfrage.setPlz("76185");
