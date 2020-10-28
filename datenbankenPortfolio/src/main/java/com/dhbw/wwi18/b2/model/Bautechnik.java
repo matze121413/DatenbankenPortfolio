@@ -56,8 +56,16 @@ public class Bautechnik {
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name = "Bauprojekt_benoetigt_Bautechnik",
-            joinColumns = { @JoinColumn(name = "bautechnik_id") },
-            inverseJoinColumns = { @JoinColumn(name = "bauprojekt_id") }
+            joinColumns = {@JoinColumn(name = "bautechnik_id")},
+            inverseJoinColumns = {@JoinColumn(name = "bauprojekt_id")}
     )
     private List<Bauprojekt> bauprojektList = new ArrayList<>();
+
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(
+            name = "WerkzeugUndMaschinenverleih_stelltBereit_Bautechnik",
+            joinColumns = {@JoinColumn(name = "bautechnik_id")},
+            inverseJoinColumns = {@JoinColumn(name = "verleih_id")})
+    private List<WerkzeugUndMaschinenverleih> werkzeugUndMaschinenverleihList;
 }

@@ -14,6 +14,7 @@
         <class>com.dhbw.wwi18.b2.model.Anfrage</class>
         <class>com.dhbw.wwi18.b2.model.Kunde</class>
         <class>com.dhbw.wwi18.b2.model.Projektleiter</class>
+        <class>com.dhbw.wwi18.b2.model.WerkzeugUndMaschinenverleih</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
