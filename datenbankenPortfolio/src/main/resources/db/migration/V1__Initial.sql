@@ -1531,21 +1531,21 @@ ALTER TABLE `Mitarbeiter_arbeitetBei_Bauunternehmen`
 -- Constraints der Tabelle `Mitarbeiter_beteiligtAn_Bauprojekt`
 --
 ALTER TABLE `Mitarbeiter_beteiligtAn_Bauprojekt`
-  ADD CONSTRAINT `Mitarbeiter_beteiligtAn_Bauprojekt_ibfk_1` FOREIGN KEY (`bauprojekt_id`) REFERENCES `Bauprojekt` (`bauprojekt_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Mitarbeiter_beteiligtAn_Bauprojekt_ibfk_2` FOREIGN KEY (`mitarbeiter_id`) REFERENCES `Mitarbeiter` (`mitarbeiter_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Mitarbeiter_beteiligtAn_Bauprojekt_ibfk_1` FOREIGN KEY (`bauprojekt_id`) REFERENCES `Bauprojekt` (`bauprojekt_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Mitarbeiter_beteiligtAn_Bauprojekt_ibfk_2` FOREIGN KEY (`mitarbeiter_id`) REFERENCES `Mitarbeiter` (`mitarbeiter_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints der Tabelle `Projektleiter`
 --
 ALTER TABLE `Projektleiter`
-  ADD CONSTRAINT `Projektleiter_ibfk_1` FOREIGN KEY (`mitarbeiter_id`) REFERENCES `Mitarbeiter` (`mitarbeiter_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+    ADD CONSTRAINT `Projektleiter_ibfk_1` FOREIGN KEY (`mitarbeiter_id`) REFERENCES `Mitarbeiter` (`mitarbeiter_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints der Tabelle `Projektleiter_bearbeitet_Anfrage`
 --
 ALTER TABLE `Projektleiter_bearbeitet_Anfrage`
-  ADD CONSTRAINT `Projektleiter_bearbeitet_Anfrage_ibfk_1` FOREIGN KEY (`mitarbeiter_id`) REFERENCES `Projektleiter` (`mitarbeiter_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Projektleiter_bearbeitet_Anfrage_ibfk_2` FOREIGN KEY (`anfrage_id`) REFERENCES `Anfrage` (`anfrage_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Projektleiter_bearbeitet_Anfrage_ibfk_1` FOREIGN KEY (`mitarbeiter_id`) REFERENCES `Projektleiter` (`mitarbeiter_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Projektleiter_bearbeitet_Anfrage_ibfk_2` FOREIGN KEY (`anfrage_id`) REFERENCES `Anfrage` (`anfrage_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints der Tabelle `Projektleiter_erstellt_Vertrag`

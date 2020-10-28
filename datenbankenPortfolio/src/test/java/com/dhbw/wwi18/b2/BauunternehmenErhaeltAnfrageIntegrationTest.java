@@ -1,13 +1,9 @@
 package com.dhbw.wwi18.b2;
 
 import com.dhbw.wwi18.b2.model.Anfrage;
-import com.dhbw.wwi18.b2.model.Bauschutt;
 import com.dhbw.wwi18.b2.model.Bauunternehmen;
-import com.dhbw.wwi18.b2.model.Entsorgungsunternehmen;
 import com.dhbw.wwi18.b2.repositories.AnfrageRepository;
-import com.dhbw.wwi18.b2.repositories.BauschuttRepository;
 import com.dhbw.wwi18.b2.repositories.BauunternehmenRepository;
-import com.dhbw.wwi18.b2.repositories.EntsorgungsunternehmenRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -66,7 +62,7 @@ public class BauunternehmenErhaeltAnfrageIntegrationTest {
 
     private Anfrage createNewAnfrage(){
         Anfrage anfrage = new Anfrage();
-        anfrage.setAnzRaueme(4);
+        anfrage.setAnzRaeume(4);
         anfrage.setStrasse("Binger");
         anfrage.setOrt("Mühlheim");
         anfrage.setPlz("76185");

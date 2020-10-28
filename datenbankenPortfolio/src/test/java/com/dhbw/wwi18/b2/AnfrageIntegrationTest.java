@@ -1,9 +1,7 @@
 package com.dhbw.wwi18.b2;
 
 import com.dhbw.wwi18.b2.model.Anfrage;
-import com.dhbw.wwi18.b2.model.Bauunternehmen;
 import com.dhbw.wwi18.b2.repositories.AnfrageRepository;
-import com.dhbw.wwi18.b2.repositories.BauunternehmenRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -44,7 +42,7 @@ public class AnfrageIntegrationTest {
     @Test
     public void updateAnfrage(){
         Anfrage anfrage = createNewAnfrage();
-        anfrage.setAnzRaueme(5);
+        anfrage.setAnzRaeume(5);
         Anfrage updatedAnfrage = anfrageRepository.updateWithMerge(anfrage);
 
         assertThat(updatedAnfrage, is(anfrage));
@@ -62,7 +60,7 @@ public class AnfrageIntegrationTest {
 
     private Anfrage createNewAnfrage(){
         Anfrage anfrage = new Anfrage();
-        anfrage.setAnzRaueme(3);
+        anfrage.setAnzRaeume(3);
         anfrage.setStrasse("Binger");
         anfrage.setOrt("Mühlheim");
         anfrage.setPlz("76185");
