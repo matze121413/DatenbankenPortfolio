@@ -1,23 +1,31 @@
 package com.dhbw.wwi18.b2.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
+@Table
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
 public class Kunde {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "kunde_id")
-    private Long mitarbeiterId;
+    private Long kundeId;
 
     private String vorname;
 
     private String nachname;
 
-    @Column(name = "straße")
     private String strasse;
 
     private String ort;
 
     private String plz;
+
 }
