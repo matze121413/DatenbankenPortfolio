@@ -2,9 +2,7 @@ package com.dhbw.wwi18.b2;
 
 import com.dhbw.wwi18.b2.model.*;
 import com.dhbw.wwi18.b2.repositories.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import com.dhbw.wwi18.b2.model.Anfrage;
 import com.dhbw.wwi18.b2.model.Bauunternehmen;
@@ -18,6 +16,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class KundeErstelltAnfrageIntegrationTest {
 
 
