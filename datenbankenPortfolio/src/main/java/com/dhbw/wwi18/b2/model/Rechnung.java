@@ -39,5 +39,5 @@ public class Rechnung {
             name = "Sachbearbeiter_stelltAus_Rechnung",
             joinColumns = { @JoinColumn(name = "rechnung_id")},
             inverseJoinColumns = { @JoinColumn(name = "mitarbeiter_id")})
-    private Mitarbeiter mitarbeiter;
+    private Sachbearbeiter sachbearbeiter;
 }

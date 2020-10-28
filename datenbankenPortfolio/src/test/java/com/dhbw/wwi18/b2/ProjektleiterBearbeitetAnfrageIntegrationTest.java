@@ -19,37 +19,42 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ProjektleiterBearbeitetAnfrageIntegrationTest {
 
-    private static MitarbeiterRepository mitarbeiterRepository;
+    private static ProjektleiterRepository projektleiterRepository;
     private static AnfrageRepository anfrageRepository;
+    private static MitarbeiterRepository mitarbeiterRepository;
 
     @BeforeAll
     public static void setup() {
-        mitarbeiterRepository = new MitarbeiterRepository();
+        projektleiterRepository = new ProjektleiterRepository();
         anfrageRepository = new AnfrageRepository();
+        mitarbeiterRepository = new MitarbeiterRepository();
     }
 
     @AfterAll
     public static void done() {
-        mitarbeiterRepository.closeConnection();
+        projektleiterRepository.closeConnection();
         anfrageRepository.closeConnection();
+        mitarbeiterRepository.closeConnection();
     }
 
     @Test
-    public void setMitarbeiterInAnfrage() {
+    public void setProjektleiterInAnfrage() {
         Mitarbeiter mitarbeiter = createNewMitarbeiter();
+        Projektleiter projektleiter = createNewProjektleiter(mitarbeiter);
 
         Anfrage anfrage1 = createNewAnfrage();
         Anfrage anfrage2 = createNewAnfrage();
 
-        anfrage1.setMitarbeiter(mitarbeiter);
-        anfrage2.setMitarbeiter(mitarbeiter);
+        anfrage1.setProjektleiter(projektleiter);
+        anfrage2.setProjektleiter(projektleiter);
 
         Anfrage savedAnfrage1 = anfrageRepository.updateWithMerge(anfrage1);
         Anfrage savedAnfrage2 = anfrageRepository.updateWithMerge(anfrage2);
 
-        assertThat(savedAnfrage1.getMitarbeiter(), is(mitarbeiter));
-        assertThat(savedAnfrage2.getMitarbeiter(), is(mitarbeiter));
+        assertThat(savedAnfrage1.getProjektleiter(), is(projektleiter));
+        assertThat(savedAnfrage2.getProjektleiter(), is(projektleiter));
     }
+
 
     private Mitarbeiter createNewMitarbeiter() {
         Mitarbeiter mitarbeiter = new Mitarbeiter();
@@ -59,20 +64,22 @@ public class ProjektleiterBearbeitetAnfrageIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        mitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
+        return mitarbeiterRepository.createEntity(mitarbeiter);
+    }
 
-        //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
-        assertThat(mitarbeiter.getVorname(), is("Horst"));
-        assertThat(mitarbeiter.getGehalt(), is(3000));
-        //Die MitarbeiterId sollte nicht statische erzeugt werden, kann aber nie null sein
-        assertNotNull(mitarbeiter.getMitarbeiterId());
+    private Projektleiter createNewProjektleiter(Mitarbeiter savedMitarbeiter) {
+        Projektleiter projektleiter = new Projektleiter();
+        projektleiter.setAktProjektanzahl(1);
+        projektleiter.setGesamtProjektanzahl(42);
+        projektleiter.setMitarbeiter(savedMitarbeiter);
+        projektleiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        return mitarbeiter;
+        return projektleiterRepository.createEntity(projektleiter);
     }
 
     private Anfrage createNewAnfrage(){
         Anfrage anfrage = new Anfrage();
-        anfrage.setAnzRaueme(4);
+        anfrage.setAnzRaeume(4);
         anfrage.setStrasse("Binger");
         anfrage.setOrt("Mühlheim");
         anfrage.setPlz("76185");
