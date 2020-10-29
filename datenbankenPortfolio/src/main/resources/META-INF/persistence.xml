@@ -21,6 +21,7 @@
         <class>com.dhbw.wwi18.b2.model.Ingenieur</class>
         <class>com.dhbw.wwi18.b2.model.Skizze</class>
         <class>com.dhbw.wwi18.b2.model.Vertrag</class>
+        <class>com.dhbw.wwi18.b2.model.Architekt</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>

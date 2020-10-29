@@ -1,57 +1,58 @@
 package com.dhbw.wwi18.b2;
 
-import com.dhbw.wwi18.b2.model.*;
-import com.dhbw.wwi18.b2.repositories.*;
-import org.junit.jupiter.api.*;
-
-import com.dhbw.wwi18.b2.model.Anfrage;
-import com.dhbw.wwi18.b2.model.Bauunternehmen;
-import com.dhbw.wwi18.b2.repositories.AnfrageRepository;
-import com.dhbw.wwi18.b2.repositories.BauunternehmenRepository;
+import com.dhbw.wwi18.b2.model.Vertrag;
+import com.dhbw.wwi18.b2.model.Mitarbeiter;
+import com.dhbw.wwi18.b2.model.Projektleiter;
+import com.dhbw.wwi18.b2.repositories.VertragRepository;
+import com.dhbw.wwi18.b2.repositories.MitarbeiterRepository;
+import com.dhbw.wwi18.b2.repositories.ProjektleiterRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ProjektleiterBearbeitetAnfrageIntegrationTest {
+public class ProjektleiterErstelltVertragIntegrationTest {
+
 
     private static ProjektleiterRepository projektleiterRepository;
-    private static AnfrageRepository anfrageRepository;
+    private static VertragRepository vertragRepository;
     private static MitarbeiterRepository mitarbeiterRepository;
 
     @BeforeAll
     public static void setup() {
         projektleiterRepository = new ProjektleiterRepository();
-        anfrageRepository = new AnfrageRepository();
+        vertragRepository = new VertragRepository();
         mitarbeiterRepository = new MitarbeiterRepository();
     }
 
     @AfterAll
     public static void done() {
         projektleiterRepository.closeConnection();
-        anfrageRepository.closeConnection();
+        vertragRepository.closeConnection();
         mitarbeiterRepository.closeConnection();
     }
 
     @Test
-    public void setProjektleiterInAnfrage() {
+    public void setProjektleiterInVertrag() {
         Mitarbeiter mitarbeiter = createNewMitarbeiter();
         Projektleiter projektleiter = createNewProjektleiter(mitarbeiter);
 
-        Anfrage anfrage1 = createNewAnfrage();
-        Anfrage anfrage2 = createNewAnfrage();
+        Vertrag vertrag1 = createNewVertrag();
+        Vertrag vertrag2 = createNewVertrag();
 
-        anfrage1.setProjektleiter(projektleiter);
-        anfrage2.setProjektleiter(projektleiter);
+        vertrag1.setProjektleiter(projektleiter);
+        vertrag2.setProjektleiter(projektleiter);
 
-        Anfrage savedAnfrage1 = anfrageRepository.updateWithMerge(anfrage1);
-        Anfrage savedAnfrage2 = anfrageRepository.updateWithMerge(anfrage2);
+        Vertrag savedVertrag1 = vertragRepository.updateWithMerge(vertrag1);
+        Vertrag savedVertrag2 = vertragRepository.updateWithMerge(vertrag2);
 
-        assertThat(savedAnfrage1.getProjektleiter(), is(projektleiter));
-        assertThat(savedAnfrage2.getProjektleiter(), is(projektleiter));
+        assertThat(savedVertrag1.getProjektleiter(), is(projektleiter));
+        assertThat(savedVertrag2.getProjektleiter(), is(projektleiter));
     }
 
 
@@ -76,20 +77,17 @@ public class ProjektleiterBearbeitetAnfrageIntegrationTest {
         return projektleiterRepository.createEntity(projektleiter);
     }
 
-    private Anfrage createNewAnfrage(){
-        Anfrage anfrage = new Anfrage();
-        anfrage.setAnzRaeume(4);
-        anfrage.setStrasse("Binger");
-        anfrage.setOrt("Mühlheim");
-        anfrage.setPlz("76185");
-        anfrage.setFlaeche(53);
-        anfrage.setFarbe("rot");
-        anfrage.setPreisvorstellung(500000);
+    private Vertrag createNewVertrag(){
+        Vertrag vertrag = new Vertrag();
+        vertrag.setPreis(200000);
+        vertrag.setUnterschrift(true);
+        vertrag.setLaufzeit(30);
+        vertrag.setGegenstand("Haus");
 
-        Anfrage savedAnfrage = anfrageRepository.createEntity(anfrage);
+        Vertrag savedVertrag = vertragRepository.createEntity(vertrag);
 
-        assertNotNull(savedAnfrage.getAnfrageId());
-        assertThat(anfrage.getStrasse(), is("Schofer"));
-        return savedAnfrage;
+        assertNotNull(savedVertrag.getVertragId());
+        assertThat(vertrag.getPreis(), is(200000));
+        return savedVertrag;
     }
 }
