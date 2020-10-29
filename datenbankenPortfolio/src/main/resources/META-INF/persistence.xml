@@ -19,6 +19,8 @@
         <class>com.dhbw.wwi18.b2.model.Sachbearbeiter</class>
         <class>com.dhbw.wwi18.b2.model.Immobilie</class>
         <class>com.dhbw.wwi18.b2.model.Ingenieur</class>
+        <class>com.dhbw.wwi18.b2.model.Skizze</class>
+        <class>com.dhbw.wwi18.b2.model.Vertrag</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
