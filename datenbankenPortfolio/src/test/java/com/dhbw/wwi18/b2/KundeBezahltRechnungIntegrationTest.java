@@ -1,35 +1,41 @@
 package com.dhbw.wwi18.b2;
 
-import com.dhbw.wwi18.b2.model.Rechnung;
 import com.dhbw.wwi18.b2.model.Kunde;
 import com.dhbw.wwi18.b2.model.Rechnung;
-import com.dhbw.wwi18.b2.repositories.RechnungRepository;
+import com.dhbw.wwi18.b2.model.Vertrag;
 import com.dhbw.wwi18.b2.repositories.KundeRepository;
 import com.dhbw.wwi18.b2.repositories.RechnungRepository;
+import com.dhbw.wwi18.b2.repositories.VertragRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class KundeBezahltRechnungIntegrationTest {
 
-    private static KundeRepository kundeRepository;
-    private static RechnungRepository rechnungRepository;
+    private KundeRepository kundeRepository;
+    private RechnungRepository rechnungRepository;
+    private VertragRepository vertragRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         kundeRepository = new KundeRepository();
         rechnungRepository = new RechnungRepository();
+        vertragRepository = new VertragRepository();
     }
 
     @AfterAll
-    public static void done() {
+    public void done() {
         kundeRepository.closeConnection();
         rechnungRepository.closeConnection();
+        vertragRepository.closeConnection();
     }
+
 
     @Test
     public void setKundeInRechnung() {
@@ -55,6 +61,7 @@ public class KundeBezahltRechnungIntegrationTest {
         rechnung.setZahlungsart("Paypal");
         rechnung.setStatus("In Bearbeitung");
         rechnung.setFrist(16101996);
+        rechnung.setVertrag(createNewVertrag());
 
         Rechnung savedRechnung = rechnungRepository.createEntity(rechnung);
 
@@ -63,7 +70,17 @@ public class KundeBezahltRechnungIntegrationTest {
         return savedRechnung;
     }
 
-    private Kunde createNewKunde(){
+    private Vertrag createNewVertrag() {
+        Vertrag vertrag = new Vertrag();
+        vertrag.setPreis(200000);
+        vertrag.setUnterschrift(true);
+        vertrag.setLaufzeit(30);
+        vertrag.setGegenstand("Haus");
+
+        return vertragRepository.createEntity(vertrag);
+    }
+
+    private Kunde createNewKunde() {
         Kunde kunde = new Kunde();
         kunde.setVorname("Bert");
         kunde.setNachname("Schmitz");
@@ -74,7 +91,7 @@ public class KundeBezahltRechnungIntegrationTest {
         Kunde savedKunde = kundeRepository.createEntity(kunde);
 
         assertNotNull(savedKunde.getKundeId());
-        assertThat(kunde.getStrasse(), is("Schofer"));
+        assertThat(kunde.getStrasse(), is("Berliner Weg"));
         return savedKunde;
     }
 }

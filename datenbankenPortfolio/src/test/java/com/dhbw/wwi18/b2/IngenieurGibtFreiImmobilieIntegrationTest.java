@@ -57,7 +57,7 @@ public class IngenieurGibtFreiImmobilieIntegrationTest {
 
     private Ingenieur createNewIngenieur(Mitarbeiter savedMitarbeiter) {
         Ingenieur ingenieur = new Ingenieur();
-        ingenieur.setSelbständig(false);
+        ingenieur.setSelbststaendig(false);
         ingenieur.setStrasse("im Sand");
         ingenieur.setOrt("Rheinbreitbach");
         ingenieur.setPlz("56846");

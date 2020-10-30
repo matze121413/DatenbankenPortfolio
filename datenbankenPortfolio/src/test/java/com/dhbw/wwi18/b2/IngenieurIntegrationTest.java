@@ -1,9 +1,9 @@
 package com.dhbw.wwi18.b2;
 
-import com.dhbw.wwi18.b2.model.Mitarbeiter;
 import com.dhbw.wwi18.b2.model.Ingenieur;
-import com.dhbw.wwi18.b2.repositories.MitarbeiterRepository;
+import com.dhbw.wwi18.b2.model.Mitarbeiter;
 import com.dhbw.wwi18.b2.repositories.IngenieurRepository;
+import com.dhbw.wwi18.b2.repositories.MitarbeiterRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -54,7 +54,7 @@ public class IngenieurIntegrationTest {
     public void updateIngenieur() {
         Mitarbeiter mitarbeiter = createNewMitarbeiter();
         Ingenieur ingenieur = createNewIngenieur(mitarbeiter);
-        ingenieur.setSelbständig(true);
+        ingenieur.setSelbststaendig(true);
         ingenieur.setOrt("Karlsruhe");
         Ingenieur updatedIngenieur = ingenieurRepository.updateWithMerge(ingenieur);
 
@@ -95,7 +95,7 @@ public class IngenieurIntegrationTest {
 
     private Ingenieur createNewIngenieur(Mitarbeiter savedMitarbeiter) {
         Ingenieur ingenieur = new Ingenieur();
-        ingenieur.setSelbständig(false);
+        ingenieur.setSelbststaendig(false);
         ingenieur.setStrasse("im Sand");
         ingenieur.setOrt("Rheinbreitbach");
         ingenieur.setPlz("56846");

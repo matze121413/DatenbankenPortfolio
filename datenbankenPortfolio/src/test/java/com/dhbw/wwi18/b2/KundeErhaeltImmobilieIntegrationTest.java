@@ -72,7 +72,7 @@ public class KundeErhaeltImmobilieIntegrationTest {
         Kunde savedKunde = kundeRepository.createEntity(kunde);
 
         assertNotNull(savedKunde.getKundeId());
-        assertThat(kunde.getStrasse(), is("Schofer"));
+        assertThat(kunde.getStrasse(), is("Berliner Weg"));
         return savedKunde;
     }
 }

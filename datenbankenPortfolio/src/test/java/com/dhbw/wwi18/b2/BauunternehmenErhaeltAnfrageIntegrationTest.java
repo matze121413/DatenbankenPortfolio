@@ -56,7 +56,7 @@ public class BauunternehmenErhaeltAnfrageIntegrationTest {
         Bauunternehmen savedBauunternehmen = bauunternehmenRepository.createEntity(bauunternehmen);
 
         assertNotNull(savedBauunternehmen.getUnternehmenId());
-        assertThat(bauunternehmen.getName(), is("könnenwirdasschaffen"));
+        assertThat(bauunternehmen.getName(), is("BobDerMeister"));
         return savedBauunternehmen;
     }
 
@@ -73,7 +73,7 @@ public class BauunternehmenErhaeltAnfrageIntegrationTest {
         Anfrage savedAnfrage = anfrageRepository.createEntity(anfrage);
 
         assertNotNull(savedAnfrage.getAnfrageId());
-        assertThat(anfrage.getStrasse(), is("Schofer"));
+        assertThat(anfrage.getStrasse(), is("Binger"));
         return savedAnfrage;
     }
 }

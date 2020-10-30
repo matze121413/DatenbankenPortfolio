@@ -71,7 +71,7 @@ public class AnfrageIntegrationTest {
         Anfrage savedAnfrage = anfrageRepository.createEntity(anfrage);
 
         assertNotNull(savedAnfrage.getAnfrageId());
-        assertThat(anfrage.getStrasse(), is("Schofer"));
+        assertThat(anfrage.getStrasse(), is("Binger"));
         return savedAnfrage;
     }
 }

@@ -1,7 +1,9 @@
 package com.dhbw.wwi18.b2;
 
 import com.dhbw.wwi18.b2.model.Rechnung;
+import com.dhbw.wwi18.b2.model.Vertrag;
 import com.dhbw.wwi18.b2.repositories.RechnungRepository;
+import com.dhbw.wwi18.b2.repositories.VertragRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,14 +17,19 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RechnungIntegrationTest {
 
-    private static RechnungRepository rechnungRepository;
+    private RechnungRepository rechnungRepository;
+    private VertragRepository vertragRepository;
 
     @BeforeAll
-    public static void setup() {rechnungRepository = new RechnungRepository();}
+    public void setup() {
+        rechnungRepository = new RechnungRepository();
+        vertragRepository = new VertragRepository();
+    }
 
     @AfterAll
-    public static void afterAll() {
+    public void afterAll() {
         rechnungRepository.closeConnection();
+        vertragRepository.closeConnection();
     }
 
     @Test
@@ -64,11 +71,22 @@ public class RechnungIntegrationTest {
         rechnung.setZahlungsart("Paypal");
         rechnung.setStatus("In Bearbeitung");
         rechnung.setFrist(16101996);
+        rechnung.setVertrag(createNewVertrag());
 
         Rechnung savedRechnung = rechnungRepository.createEntity(rechnung);
 
         assertNotNull(savedRechnung.getRechnungId());
         assertThat(rechnung.getPreis(), is(2000000));
         return savedRechnung;
+    }
+
+    private Vertrag createNewVertrag() {
+        Vertrag vertrag = new Vertrag();
+        vertrag.setPreis(200000);
+        vertrag.setUnterschrift(true);
+        vertrag.setLaufzeit(30);
+        vertrag.setGegenstand("Haus");
+
+        return vertragRepository.createEntity(vertrag);
     }
 }

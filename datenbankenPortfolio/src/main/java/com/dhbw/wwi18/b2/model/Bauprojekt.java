@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,8 @@ import java.util.List;
 @Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"bauschuttList", "mitarbeiterList","bautechnikList","werkstoffList"})
-@ToString(exclude = {"bauschuttList", "mitarbeiterList","bautechnikList","werkstoffList"})
+@EqualsAndHashCode(exclude = {"bauschuttList", "mitarbeiterList", "bautechnikList", "werkstoffList", "immobilie"})
+@ToString(exclude = {"bauschuttList", "mitarbeiterList", "bautechnikList", "werkstoffList", "immobilie"})
 @NoArgsConstructor
 public class Bauprojekt {
     @Id
@@ -74,8 +75,15 @@ public class Bauprojekt {
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name = "Bauprojekt_benoetigt_Werkstoff",
-            joinColumns = { @JoinColumn(name = "bauprojekt_id") },
-            inverseJoinColumns = { @JoinColumn(name = "werkstoff_id") }
+            joinColumns = {@JoinColumn(name = "bauprojekt_id")},
+            inverseJoinColumns = {@JoinColumn(name = "werkstoff_id")}
     )
     private List<Werkstoff> werkstoffList = new ArrayList<>();
+
+    @OneToOne
+    @JoinTable(
+            name = "Bauprojekt_stelltFertig_Immobilie",
+            joinColumns = {@JoinColumn(name = "bauprojekt_id")},
+            inverseJoinColumns = {@JoinColumn(name = "immobilie_id")})
+    private Immobilie immobilie;
 }

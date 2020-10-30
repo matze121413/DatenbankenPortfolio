@@ -1,16 +1,13 @@
 package com.dhbw.wwi18.b2;
 
-import com.dhbw.wwi18.b2.model.*;
-import com.dhbw.wwi18.b2.repositories.*;
-import org.junit.jupiter.api.*;
-
 import com.dhbw.wwi18.b2.model.Anfrage;
-import com.dhbw.wwi18.b2.model.Bauunternehmen;
+import com.dhbw.wwi18.b2.model.Kunde;
 import com.dhbw.wwi18.b2.repositories.AnfrageRepository;
-import com.dhbw.wwi18.b2.repositories.BauunternehmenRepository;
+import com.dhbw.wwi18.b2.repositories.KundeRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,17 +17,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class KundeErstelltAnfrageIntegrationTest {
 
 
-    private static KundeRepository kundeRepository;
-    private static AnfrageRepository anfrageRepository;
+    private KundeRepository kundeRepository;
+    private AnfrageRepository anfrageRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         kundeRepository = new KundeRepository();
         anfrageRepository = new AnfrageRepository();
     }
 
     @AfterAll
-    public static void done() {
+    public void done() {
         kundeRepository.closeConnection();
         anfrageRepository.closeConnection();
     }
@@ -63,7 +60,7 @@ public class KundeErstelltAnfrageIntegrationTest {
         Kunde savedKunde = kundeRepository.createEntity(kunde);
 
         assertNotNull(savedKunde.getKundeId());
-        assertThat(kunde.getStrasse(), is("Schofer"));
+        assertThat(kunde.getStrasse(), is("Berliner Weg"));
         return savedKunde;
     }
 
@@ -80,7 +77,7 @@ public class KundeErstelltAnfrageIntegrationTest {
         Anfrage savedAnfrage = anfrageRepository.createEntity(anfrage);
 
         assertNotNull(savedAnfrage.getAnfrageId());
-        assertThat(anfrage.getStrasse(), is("Schofer"));
+        assertThat(anfrage.getStrasse(), is("Binger"));
         return savedAnfrage;
     }
 }

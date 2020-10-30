@@ -24,8 +24,8 @@ import java.util.List;
 @Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"bauarbeiterList", "bauprojektList"})
-@ToString(exclude = {"bauarbeiterList", "bauprojektList"})
+@EqualsAndHashCode(exclude = {"bauarbeiterList", "bauprojektList", "werkzeugUndMaschinenverleihList"})
+@ToString(exclude = {"bauarbeiterList", "bauprojektList", "werkzeugUndMaschinenverleihList"})
 @NoArgsConstructor
 public class Bautechnik {
     @Id
@@ -67,5 +67,5 @@ public class Bautechnik {
             name = "WerkzeugUndMaschinenverleih_stelltBereit_Bautechnik",
             joinColumns = {@JoinColumn(name = "bautechnik_id")},
             inverseJoinColumns = {@JoinColumn(name = "verleih_id")})
-    private List<WerkzeugUndMaschinenverleih> werkzeugUndMaschinenverleihList;
+    private List<WerkzeugUndMaschinenverleih> werkzeugUndMaschinenverleihList = new ArrayList<>();
 }

@@ -1,16 +1,15 @@
 package com.dhbw.wwi18.b2;
 
-import com.dhbw.wwi18.b2.model.*;
-import com.dhbw.wwi18.b2.repositories.*;
-import org.junit.jupiter.api.*;
-
 import com.dhbw.wwi18.b2.model.Anfrage;
-import com.dhbw.wwi18.b2.model.Bauunternehmen;
+import com.dhbw.wwi18.b2.model.Mitarbeiter;
+import com.dhbw.wwi18.b2.model.Projektleiter;
 import com.dhbw.wwi18.b2.repositories.AnfrageRepository;
-import com.dhbw.wwi18.b2.repositories.BauunternehmenRepository;
+import com.dhbw.wwi18.b2.repositories.MitarbeiterRepository;
+import com.dhbw.wwi18.b2.repositories.ProjektleiterRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -89,7 +88,7 @@ public class ProjektleiterBearbeitetAnfrageIntegrationTest {
         Anfrage savedAnfrage = anfrageRepository.createEntity(anfrage);
 
         assertNotNull(savedAnfrage.getAnfrageId());
-        assertThat(anfrage.getStrasse(), is("Schofer"));
+        assertThat(anfrage.getStrasse(), is("Binger"));
         return savedAnfrage;
     }
 }

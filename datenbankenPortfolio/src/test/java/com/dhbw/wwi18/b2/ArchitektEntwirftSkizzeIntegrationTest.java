@@ -83,7 +83,7 @@ public class ArchitektEntwirftSkizzeIntegrationTest {
         Architekt architekt= new Architekt();
         architekt.setMitarbeiter(savedMitarbeiter);
         architekt.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
-        architekt.setSelbstaendig(true);
+        architekt.setSelbststaendig(true);
         architekt.setStrasse("Pfad");
         architekt.setOrt("Köln");
         architekt.setPlz("50667");

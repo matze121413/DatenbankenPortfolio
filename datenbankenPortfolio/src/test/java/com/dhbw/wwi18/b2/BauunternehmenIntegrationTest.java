@@ -71,7 +71,7 @@ public class BauunternehmenIntegrationTest {
         Bauunternehmen savedBauunternehmen = bauunternehmenRepository.createEntity(bauunternehmen);
 
         assertNotNull(savedBauunternehmen.getUnternehmenId());
-        assertThat(bauunternehmen.getName(), is("könnenwirdasschaffen"));
+        assertThat(bauunternehmen.getName(), is("BobDerMeister"));
         return savedBauunternehmen;
     }
 

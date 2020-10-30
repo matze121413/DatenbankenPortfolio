@@ -1,15 +1,28 @@
 package com.dhbw.wwi18.b2.model;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table
 @Getter
 @Setter
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(exclude = "bauprojekt")
+@ToString(exclude = "bauprojekt")
 @NoArgsConstructor
 public class Immobilie {
     @Id
@@ -38,6 +51,9 @@ public class Immobilie {
     private Ingenieur ingenieur;
 
     @OneToOne
-    @JoinColumn(name = "bauprojekt_id")
+    @JoinTable(
+            name = "Bauprojekt_stelltFertig_Immobilie",
+            joinColumns = {@JoinColumn(name = "immobilie_id")},
+            inverseJoinColumns = {@JoinColumn(name = "bauprojekt_id")})
     private Bauprojekt bauprojekt;
 }

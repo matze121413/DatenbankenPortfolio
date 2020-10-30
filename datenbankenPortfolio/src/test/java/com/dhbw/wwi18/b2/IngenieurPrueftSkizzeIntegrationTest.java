@@ -1,11 +1,11 @@
 package com.dhbw.wwi18.b2;
 
-import com.dhbw.wwi18.b2.model.Skizze;
 import com.dhbw.wwi18.b2.model.Ingenieur;
 import com.dhbw.wwi18.b2.model.Mitarbeiter;
-import com.dhbw.wwi18.b2.repositories.SkizzeRepository;
+import com.dhbw.wwi18.b2.model.Skizze;
 import com.dhbw.wwi18.b2.repositories.IngenieurRepository;
 import com.dhbw.wwi18.b2.repositories.MitarbeiterRepository;
+import com.dhbw.wwi18.b2.repositories.SkizzeRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -56,7 +56,7 @@ public class IngenieurPrueftSkizzeIntegrationTest {
 
     private Ingenieur createNewIngenieur(Mitarbeiter savedMitarbeiter) {
         Ingenieur ingenieur = new Ingenieur();
-        ingenieur.setSelbständig(false);
+        ingenieur.setSelbststaendig(false);
         ingenieur.setStrasse("im Sand");
         ingenieur.setOrt("Rheinbreitbach");
         ingenieur.setPlz("56846");

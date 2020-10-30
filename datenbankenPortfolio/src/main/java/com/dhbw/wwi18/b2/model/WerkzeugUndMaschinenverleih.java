@@ -17,14 +17,15 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = "")
-@ToString(exclude = "")
+@EqualsAndHashCode(exclude = "bautechnikList")
+@ToString(exclude = "bautechnikList")
 @NoArgsConstructor
 public class WerkzeugUndMaschinenverleih {
     @Id
@@ -57,5 +58,5 @@ public class WerkzeugUndMaschinenverleih {
             name = "WerkzeugUndMaschinenverleih_stelltBereit_Bautechnik",
             joinColumns = {@JoinColumn(name = "verleih_id")},
             inverseJoinColumns = {@JoinColumn(name = "bautechnik_id")})
-    private List<Bautechnik> bautechnikList;
+    private List<Bautechnik> bautechnikList = new ArrayList<>();
 }

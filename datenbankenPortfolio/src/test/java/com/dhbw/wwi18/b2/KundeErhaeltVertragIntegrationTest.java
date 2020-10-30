@@ -1,9 +1,9 @@
 package com.dhbw.wwi18.b2;
 
-import com.dhbw.wwi18.b2.model.Vertrag;
 import com.dhbw.wwi18.b2.model.Kunde;
-import com.dhbw.wwi18.b2.repositories.VertragRepository;
+import com.dhbw.wwi18.b2.model.Vertrag;
 import com.dhbw.wwi18.b2.repositories.KundeRepository;
+import com.dhbw.wwi18.b2.repositories.VertragRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -59,7 +59,7 @@ public class KundeErhaeltVertragIntegrationTest {
         Kunde savedKunde = kundeRepository.createEntity(kunde);
 
         assertNotNull(savedKunde.getKundeId());
-        assertThat(kunde.getStrasse(), is("Schofer"));
+        assertThat(kunde.getStrasse(), is("Berliner Weg"));
         return savedKunde;
     }
 

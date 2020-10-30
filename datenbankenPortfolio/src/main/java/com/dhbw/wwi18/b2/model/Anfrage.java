@@ -54,8 +54,8 @@ public class Anfrage {
     @ManyToOne
     @JoinTable(
             name = "Projektleiter_bearbeitet_Anfrage",
-            joinColumns = { @JoinColumn(name = "anfrage_id")},
-            inverseJoinColumns = { @JoinColumn(name = "projektleiter_id")})
+            joinColumns = {@JoinColumn(name = "anfrage_id")},
+            inverseJoinColumns = {@JoinColumn(name = "mitarbeiter_id")})
     private Projektleiter projektleiter;
 
     @ManyToOne
