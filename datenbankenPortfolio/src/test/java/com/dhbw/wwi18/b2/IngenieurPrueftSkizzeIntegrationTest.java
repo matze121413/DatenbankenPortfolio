@@ -13,7 +13,6 @@ import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class IngenieurPrueftSkizzeIntegrationTest {
@@ -87,11 +86,7 @@ public class IngenieurPrueftSkizzeIntegrationTest {
         skizze.setFlaeche(500);
         skizze.setRaum("Raum");
 
-        Skizze savedSkizze = skizzeRepository.createEntity(skizze);
-
-        assertNotNull(savedSkizze.getSkizzeId());
-        assertThat(skizze.getDetailgrad(), is("sehr hoch"));
-        return savedSkizze;
+        return skizzeRepository.createEntity(skizze);
     }
 
 }

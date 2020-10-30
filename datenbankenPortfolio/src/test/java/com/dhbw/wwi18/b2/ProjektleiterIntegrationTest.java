@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ProjektleiterIntegrationTest {
 
     private ProjektleiterRepository projektleiterRepository;
-    private static MitarbeiterRepository mitarbeiterRepository;
+    private MitarbeiterRepository mitarbeiterRepository;
 
     @BeforeAll
     public void setup() {

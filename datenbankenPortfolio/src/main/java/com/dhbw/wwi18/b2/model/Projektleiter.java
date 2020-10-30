@@ -17,8 +17,8 @@ import javax.persistence.Table;
 @Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {})
-@ToString(exclude = {})
+@EqualsAndHashCode(exclude = "architekt")
+@ToString(exclude = "architekt")
 @NoArgsConstructor
 public class Projektleiter {
     @Id
@@ -32,5 +32,8 @@ public class Projektleiter {
     @OneToOne
     @JoinColumn(name = "mitarbeiter_id")
     private Mitarbeiter mitarbeiter;
+
+    @OneToOne(mappedBy = "projektleiter")
+    private Architekt architekt;
 
 }
