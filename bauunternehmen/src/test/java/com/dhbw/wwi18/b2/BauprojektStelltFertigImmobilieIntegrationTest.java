@@ -42,8 +42,8 @@ public class BauprojektStelltFertigImmobilieIntegrationTest {
         immobilie1.setBauprojekt(bauprojekt);
         immobilie2.setBauprojekt(bauprojekt);
 
-        Immobilie savedImmobilie1 = immobilieRepository.updateWithMerge(immobilie1);
-        Immobilie savedImmobilie2 = immobilieRepository.updateWithMerge(immobilie2);
+        Immobilie savedImmobilie1 = immobilieRepository.update(immobilie1);
+        Immobilie savedImmobilie2 = immobilieRepository.update(immobilie2);
 
         assertThat(savedImmobilie1.getBauprojekt(), is(bauprojekt));
         assertThat(savedImmobilie2.getBauprojekt(), is(bauprojekt));
@@ -54,7 +54,7 @@ public class BauprojektStelltFertigImmobilieIntegrationTest {
         immobilie.setStatus("fertig");
         immobilie.setFlaeche(150);
 
-        Immobilie savedImmobilie = immobilieRepository.createEntity(immobilie);
+        Immobilie savedImmobilie = immobilieRepository.save(immobilie);
 
         assertNotNull(savedImmobilie.getImmobilieId());
         assertThat(immobilie.getFarbe(), is("gelb"));
@@ -69,7 +69,7 @@ public class BauprojektStelltFertigImmobilieIntegrationTest {
         bauprojekt.setGewinn(500000);
         bauprojekt.setKosten(250000);
 
-        Bauprojekt savedBauprojekt = bauprojektRepository.createEntity(bauprojekt);
+        Bauprojekt savedBauprojekt = bauprojektRepository.save(bauprojekt);
         assertNotNull(savedBauprojekt.getBauprojektId());
         assertThat(savedBauprojekt.getEndDatum(), is(20230514));
         return savedBauprojekt;

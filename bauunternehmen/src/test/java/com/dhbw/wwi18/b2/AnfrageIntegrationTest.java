@@ -43,7 +43,7 @@ public class AnfrageIntegrationTest {
     public void updateAnfrage(){
         Anfrage anfrage = createNewAnfrage();
         anfrage.setAnzRaeume(5);
-        Anfrage updatedAnfrage = anfrageRepository.updateWithMerge(anfrage);
+        Anfrage updatedAnfrage = anfrageRepository.update(anfrage);
 
         assertThat(updatedAnfrage, is(anfrage));
     }
@@ -51,7 +51,7 @@ public class AnfrageIntegrationTest {
     @Test
     public void deleteAnfrage(){
         Anfrage anfrage = createNewAnfrage();
-        anfrageRepository.deleteEntity(anfrage);
+        anfrageRepository.delete(anfrage);
 
         Anfrage deletedAnfrage = anfrageRepository.findById(anfrage.getAnfrageId());
         assertNull(deletedAnfrage);
@@ -68,7 +68,7 @@ public class AnfrageIntegrationTest {
         anfrage.setFarbe("rot");
         anfrage.setPreisvorstellung(500000);
 
-        Anfrage savedAnfrage = anfrageRepository.createEntity(anfrage);
+        Anfrage savedAnfrage = anfrageRepository.save(anfrage);
 
         assertNotNull(savedAnfrage.getAnfrageId());
         assertThat(anfrage.getStrasse(), is("Binger"));

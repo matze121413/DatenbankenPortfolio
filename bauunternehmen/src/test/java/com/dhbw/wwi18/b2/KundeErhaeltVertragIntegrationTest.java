@@ -41,8 +41,8 @@ public class KundeErhaeltVertragIntegrationTest {
         vertrag1.setKunde(kunde);
         vertrag2.setKunde(kunde);
 
-        Vertrag savedVertrag1 = vertragRepository.updateWithMerge(vertrag1);
-        Vertrag savedVertrag2 = vertragRepository.updateWithMerge(vertrag2);
+        Vertrag savedVertrag1 = vertragRepository.update(vertrag1);
+        Vertrag savedVertrag2 = vertragRepository.update(vertrag2);
 
         assertThat(savedVertrag1.getKunde(), is(kunde));
         assertThat(savedVertrag2.getKunde(), is(kunde));
@@ -56,7 +56,7 @@ public class KundeErhaeltVertragIntegrationTest {
         kunde.setOrt("Berlin");
         kunde.setPlz("53343");
 
-        Kunde savedKunde = kundeRepository.createEntity(kunde);
+        Kunde savedKunde = kundeRepository.save(kunde);
 
         assertNotNull(savedKunde.getKundeId());
         assertThat(kunde.getStrasse(), is("Berliner Weg"));
@@ -70,7 +70,7 @@ public class KundeErhaeltVertragIntegrationTest {
         vertrag.setLaufzeit(30);
         vertrag.setGegenstand("Haus");
 
-        Vertrag savedVertrag = vertragRepository.createEntity(vertrag);
+        Vertrag savedVertrag = vertragRepository.save(vertrag);
 
         assertNotNull(savedVertrag.getVertragId());
         assertThat(vertrag.getPreis(), is(200000));

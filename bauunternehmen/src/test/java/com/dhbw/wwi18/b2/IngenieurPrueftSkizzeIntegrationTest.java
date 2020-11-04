@@ -46,8 +46,8 @@ public class IngenieurPrueftSkizzeIntegrationTest {
         skizze1.setIngenieur(ingenieur);
         skizze2.setIngenieur(ingenieur);
 
-        Skizze savedSkizze1 = skizzeRepository.updateWithMerge(skizze1);
-        Skizze savedSkizze2 = skizzeRepository.updateWithMerge(skizze2);
+        Skizze savedSkizze1 = skizzeRepository.update(skizze1);
+        Skizze savedSkizze2 = skizzeRepository.update(skizze2);
 
         assertThat(savedSkizze1.getIngenieur(), is(ingenieur));
         assertThat(savedSkizze2.getIngenieur(), is(ingenieur));
@@ -62,7 +62,7 @@ public class IngenieurPrueftSkizzeIntegrationTest {
         ingenieur.setMitarbeiter(savedMitarbeiter);
         ingenieur.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        ingenieur = ingenieurRepository.createEntity(ingenieur);
+        ingenieur = ingenieurRepository.save(ingenieur);
 
         assertThat(ingenieur.getStrasse(), is("im Sand"));
         assertThat(ingenieur.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));
@@ -77,7 +77,7 @@ public class IngenieurPrueftSkizzeIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        return mitarbeiterRepository.createEntity(mitarbeiter);
+        return mitarbeiterRepository.save(mitarbeiter);
     }
 
     private Skizze createNewSkizze(){
@@ -86,7 +86,7 @@ public class IngenieurPrueftSkizzeIntegrationTest {
         skizze.setFlaeche(500);
         skizze.setRaum("Raum");
 
-        return skizzeRepository.createEntity(skizze);
+        return skizzeRepository.save(skizze);
     }
 
 }

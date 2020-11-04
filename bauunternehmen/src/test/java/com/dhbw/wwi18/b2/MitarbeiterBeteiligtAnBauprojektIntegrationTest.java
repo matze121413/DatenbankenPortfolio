@@ -45,7 +45,7 @@ public class MitarbeiterBeteiligtAnBauprojektIntegrationTest {
         List<Bauprojekt> bauprojektList = Arrays.asList(bauprojekt1, bauprojekt2);
         mitarbeiter.setBauprojektList(bauprojektList);
 
-        Mitarbeiter savedMitarbeiter = mitarbeiterRepository.updateWithMerge(mitarbeiter);
+        Mitarbeiter savedMitarbeiter = mitarbeiterRepository.update(mitarbeiter);
         Bauprojekt savedBauprojekt1 = bauprojektRepository.findById(bauprojekt1.getBauprojektId());
         Bauprojekt savedBauprojekt2 = bauprojektRepository.findById(bauprojekt2.getBauprojektId());
 
@@ -65,7 +65,7 @@ public class MitarbeiterBeteiligtAnBauprojektIntegrationTest {
         List<Mitarbeiter> mitarbeiterList = Arrays.asList(mitarbeiter1, mitarbeiter2);
         bauprojekt.setMitarbeiterList(mitarbeiterList);
 
-        Bauprojekt savedBauprojekt = bauprojektRepository.updateWithMerge(bauprojekt);
+        Bauprojekt savedBauprojekt = bauprojektRepository.update(bauprojekt);
         Mitarbeiter savedMitarbeiter1 = mitarbeiterRepository.findById(mitarbeiter1.getMitarbeiterId());
         Mitarbeiter savedMitarbeiter2 = mitarbeiterRepository.findById(mitarbeiter2.getMitarbeiterId());
 
@@ -82,7 +82,7 @@ public class MitarbeiterBeteiligtAnBauprojektIntegrationTest {
         bauprojekt.setGewinn(500000);
         bauprojekt.setKosten(250000);
 
-        Bauprojekt savedBauprojekt = bauprojektRepository.createEntity(bauprojekt);
+        Bauprojekt savedBauprojekt = bauprojektRepository.save(bauprojekt);
         assertNotNull(savedBauprojekt.getBauprojektId());
         assertThat(savedBauprojekt.getEndDatum(), is(20230514));
         return savedBauprojekt;
@@ -96,7 +96,7 @@ public class MitarbeiterBeteiligtAnBauprojektIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        mitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
+        mitarbeiter = mitarbeiterRepository.save(mitarbeiter);
 
         //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
         assertThat(mitarbeiter.getVorname(), is("Horst"));

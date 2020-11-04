@@ -47,8 +47,8 @@ public class ProjektleiterKontaktiertWerkstofflieferantIntegrationTest {
         werkstofflieferant1.setProjektleiter(projektleiter);
         werkstofflieferant2.setProjektleiter(projektleiter);
 
-        Werkstofflieferant savedWerkstofflieferant1 = werkstofflieferantRepository.updateWithMerge(werkstofflieferant1);
-        Werkstofflieferant savedWerkstofflieferant2 = werkstofflieferantRepository.updateWithMerge(werkstofflieferant2);
+        Werkstofflieferant savedWerkstofflieferant1 = werkstofflieferantRepository.update(werkstofflieferant1);
+        Werkstofflieferant savedWerkstofflieferant2 = werkstofflieferantRepository.update(werkstofflieferant2);
 
         assertThat(savedWerkstofflieferant1.getProjektleiter(), is(projektleiter));
         assertThat(savedWerkstofflieferant2.getProjektleiter(), is(projektleiter));
@@ -62,7 +62,7 @@ public class ProjektleiterKontaktiertWerkstofflieferantIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        return mitarbeiterRepository.createEntity(mitarbeiter);
+        return mitarbeiterRepository.save(mitarbeiter);
     }
 
     private Projektleiter createNewProjektleiter(Mitarbeiter savedMitarbeiter) {
@@ -72,7 +72,7 @@ public class ProjektleiterKontaktiertWerkstofflieferantIntegrationTest {
         projektleiter.setMitarbeiter(savedMitarbeiter);
         projektleiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        return projektleiterRepository.createEntity(projektleiter);
+        return projektleiterRepository.save(projektleiter);
     }
 
     private Werkstofflieferant createNewWerkstofflieferant() {
@@ -84,7 +84,7 @@ public class ProjektleiterKontaktiertWerkstofflieferantIntegrationTest {
         werkstofflieferant.setStrasse("Stammweg");
         werkstofflieferant.setTelefonnummer("0360555970");
 
-        return werkstofflieferantRepository.createEntity(werkstofflieferant);
+        return werkstofflieferantRepository.save(werkstofflieferant);
     }
 
 }

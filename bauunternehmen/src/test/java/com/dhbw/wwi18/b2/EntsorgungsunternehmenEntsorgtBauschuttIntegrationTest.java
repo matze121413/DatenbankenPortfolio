@@ -41,8 +41,8 @@ public class EntsorgungsunternehmenEntsorgtBauschuttIntegrationTest {
         bauschutt1.setEntsorgungsunternehmen(entsorgungsunternehmen);
         bauschutt2.setEntsorgungsunternehmen(entsorgungsunternehmen);
 
-        Bauschutt savedBauschutt1 = bauschuttRepository.updateWithMerge(bauschutt1);
-        Bauschutt savedBauschutt2 = bauschuttRepository.updateWithMerge(bauschutt2);
+        Bauschutt savedBauschutt1 = bauschuttRepository.update(bauschutt1);
+        Bauschutt savedBauschutt2 = bauschuttRepository.update(bauschutt2);
 
         assertThat(savedBauschutt1.getEntsorgungsunternehmen(), is(entsorgungsunternehmen));
         assertThat(savedBauschutt2.getEntsorgungsunternehmen(), is(entsorgungsunternehmen));
@@ -58,7 +58,7 @@ public class EntsorgungsunternehmenEntsorgtBauschuttIntegrationTest {
         entsorgungsunternehmen.setTelefonnummer("07261/931-0");
 
         Entsorgungsunternehmen savedEntsorgungsunternehmen =
-                entsorgungsunternehmenRepository.createEntity(entsorgungsunternehmen);
+                entsorgungsunternehmenRepository.save(entsorgungsunternehmen);
         assertNotNull(savedEntsorgungsunternehmen.getEntsorgungId());
         assertThat(savedEntsorgungsunternehmen.getName(), is("AVR"));
         return savedEntsorgungsunternehmen;
@@ -71,7 +71,7 @@ public class EntsorgungsunternehmenEntsorgtBauschuttIntegrationTest {
         bauschutt.setKilopreis(3);
         bauschutt.setMenge(7);
 
-        Bauschutt savedBauschutt = bauschuttRepository.createEntity(bauschutt);
+        Bauschutt savedBauschutt = bauschuttRepository.save(bauschutt);
         assertNotNull(savedBauschutt.getBauschuttId());
         assertThat(savedBauschutt.getArt(), is("Ziegel"));
         return savedBauschutt;

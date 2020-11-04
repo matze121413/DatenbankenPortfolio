@@ -44,7 +44,7 @@ public class WerkstoffIntegrationTest {
     public void updateWerkstoff(){
         Werkstoff werkstoff = createNewWerkstoff();
         werkstoff.setMenge(100);
-        Werkstoff updatedWerkstoff = werkstoffRepository.updateWithMerge(werkstoff);
+        Werkstoff updatedWerkstoff = werkstoffRepository.update(werkstoff);
 
         assertThat(updatedWerkstoff, is(werkstoff));
     }
@@ -52,7 +52,7 @@ public class WerkstoffIntegrationTest {
     @Test
     public void deleteWerkstoff(){
         Werkstoff werkstoff = createNewWerkstoff();
-        werkstoffRepository.deleteEntity(werkstoff);
+        werkstoffRepository.delete(werkstoff);
 
         Werkstoff deletedWerkstoff = werkstoffRepository.findById(werkstoff.getWerkstoffId());
         assertNull(deletedWerkstoff);
@@ -65,7 +65,7 @@ public class WerkstoffIntegrationTest {
         werkstoff.setGewicht(30);
         werkstoff.setKilopreis(5);
         werkstoff.setMenge(75);
-        Werkstoff savedWerkstoff = werkstoffRepository.createEntity(werkstoff);
+        Werkstoff savedWerkstoff = werkstoffRepository.save(werkstoff);
 
         assertNotNull(savedWerkstoff.getWerkstoffId());
         assertThat(werkstoff.getArt(), is("Holzbalken"));

@@ -2,10 +2,8 @@ package com.dhbw.wwi18.b2;
 
 import com.dhbw.wwi18.b2.model.Mitarbeiter;
 import com.dhbw.wwi18.b2.model.Sachbearbeiter;
-import com.dhbw.wwi18.b2.model.Sachbearbeiter;
 import com.dhbw.wwi18.b2.repositories.MitarbeiterRepository;
 
-import com.dhbw.wwi18.b2.repositories.SachbearbeiterRepository;
 import com.dhbw.wwi18.b2.repositories.SachbearbeiterRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -59,7 +57,7 @@ public class SachbearbeiterIntegrationTest {
         Sachbearbeiter sachbearbeiter = createNewSachbearbeiter(mitarbeiter);
         sachbearbeiter.setTarif(8);
         sachbearbeiter.setAnzRechnungen(60);
-        Sachbearbeiter updatedSachbearbeiter = sachbearbeiterRepository.updateWithMerge(sachbearbeiter);
+        Sachbearbeiter updatedSachbearbeiter = sachbearbeiterRepository.update(sachbearbeiter);
 
         assertThat(updatedSachbearbeiter, is(sachbearbeiter));
     }
@@ -68,7 +66,7 @@ public class SachbearbeiterIntegrationTest {
     public void deleteMitarbeiterDeletesSachbearbeiter() {
         Mitarbeiter mitarbeiter = createNewMitarbeiter();
         Sachbearbeiter sachbearbeiter = createNewSachbearbeiter(mitarbeiter);
-        mitarbeiterRepository.deleteEntity(mitarbeiter);
+        mitarbeiterRepository.delete(mitarbeiter);
 
         Mitarbeiter deletedMitarbeiter = mitarbeiterRepository.findById(mitarbeiter.getMitarbeiterId());
         Sachbearbeiter deletedSachbearbeiter = sachbearbeiterRepository.findById(sachbearbeiter.getMitarbeiterId());
@@ -85,7 +83,7 @@ public class SachbearbeiterIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        mitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
+        mitarbeiter = mitarbeiterRepository.save(mitarbeiter);
 
         //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
         assertThat(mitarbeiter.getVorname(), is("Horst"));
@@ -101,7 +99,7 @@ public class SachbearbeiterIntegrationTest {
         sachbearbeiter.setMitarbeiter(savedMitarbeiter);
         sachbearbeiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        sachbearbeiter = sachbearbeiterRepository.createEntity(sachbearbeiter);
+        sachbearbeiter = sachbearbeiterRepository.save(sachbearbeiter);
 
         assertThat(sachbearbeiter.getTarif(), is(5));
         assertThat(sachbearbeiter.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));

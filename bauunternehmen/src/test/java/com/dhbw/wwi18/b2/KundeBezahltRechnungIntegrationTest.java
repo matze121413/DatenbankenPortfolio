@@ -47,8 +47,8 @@ public class KundeBezahltRechnungIntegrationTest {
         rechnung1.setKunde(kunde);
         rechnung2.setKunde(kunde);
 
-        Rechnung savedRechnung1 = rechnungRepository.updateWithMerge(rechnung1);
-        Rechnung savedRechnung2 = rechnungRepository.updateWithMerge(rechnung2);
+        Rechnung savedRechnung1 = rechnungRepository.update(rechnung1);
+        Rechnung savedRechnung2 = rechnungRepository.update(rechnung2);
 
         assertThat(savedRechnung1.getKunde(), is(kunde));
         assertThat(savedRechnung2.getKunde(), is(kunde));
@@ -63,7 +63,7 @@ public class KundeBezahltRechnungIntegrationTest {
         rechnung.setFrist(16101996);
         rechnung.setVertrag(createNewVertrag());
 
-        Rechnung savedRechnung = rechnungRepository.createEntity(rechnung);
+        Rechnung savedRechnung = rechnungRepository.save(rechnung);
 
         assertNotNull(savedRechnung.getRechnungId());
         assertThat(rechnung.getPreis(), is(2000000));
@@ -77,7 +77,7 @@ public class KundeBezahltRechnungIntegrationTest {
         vertrag.setLaufzeit(30);
         vertrag.setGegenstand("Haus");
 
-        return vertragRepository.createEntity(vertrag);
+        return vertragRepository.save(vertrag);
     }
 
     private Kunde createNewKunde() {
@@ -88,7 +88,7 @@ public class KundeBezahltRechnungIntegrationTest {
         kunde.setOrt("Berlin");
         kunde.setPlz("53343");
 
-        Kunde savedKunde = kundeRepository.createEntity(kunde);
+        Kunde savedKunde = kundeRepository.save(kunde);
 
         assertNotNull(savedKunde.getKundeId());
         assertThat(kunde.getStrasse(), is("Berliner Weg"));

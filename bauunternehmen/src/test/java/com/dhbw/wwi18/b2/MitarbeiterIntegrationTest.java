@@ -45,7 +45,7 @@ public class MitarbeiterIntegrationTest {
     public void updateMitarbeiter() {
         Mitarbeiter mitarbeiter = createNewMitarbeiter();
         mitarbeiter.setGehalt(3200);
-        Mitarbeiter updatedMitarbeiter = mitarbeiterRepository.updateWithMerge(mitarbeiter);
+        Mitarbeiter updatedMitarbeiter = mitarbeiterRepository.update(mitarbeiter);
 
         assertThat(updatedMitarbeiter, is(mitarbeiter));
     }
@@ -53,7 +53,7 @@ public class MitarbeiterIntegrationTest {
     @Test
     public void deleteWerkstoff() {
         Mitarbeiter mitarbeiter = createNewMitarbeiter();
-        mitarbeiterRepository.deleteEntity(mitarbeiter);
+        mitarbeiterRepository.delete(mitarbeiter);
 
         Mitarbeiter deletedMitarbeiter = mitarbeiterRepository.findById(mitarbeiter.getMitarbeiterId());
         assertNull(deletedMitarbeiter);
@@ -68,7 +68,7 @@ public class MitarbeiterIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        mitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
+        mitarbeiter = mitarbeiterRepository.save(mitarbeiter);
 
         //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
         assertThat(mitarbeiter.getVorname(), is("Horst"));

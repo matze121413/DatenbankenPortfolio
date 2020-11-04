@@ -45,7 +45,7 @@ public class BauschuttIntegrationTest {
     public void updateBauschutt(){
         Bauschutt bauschutt = createNewBauschutt();
         bauschutt.setMenge(100);
-        Bauschutt updatedBauschutt = bauschuttRepository.updateWithMerge(bauschutt);
+        Bauschutt updatedBauschutt = bauschuttRepository.update(bauschutt);
 
         assertThat(updatedBauschutt, is(bauschutt));
     }
@@ -53,7 +53,7 @@ public class BauschuttIntegrationTest {
     @Test
     public void deleteBauschutt(){
         Bauschutt bauschutt = createNewBauschutt();
-        bauschuttRepository.deleteEntity(bauschutt);
+        bauschuttRepository.delete(bauschutt);
 
         Bauschutt deletedBauschutt = bauschuttRepository.findById(bauschutt.getBauschuttId());
         assertNull(deletedBauschutt);
@@ -68,7 +68,7 @@ public class BauschuttIntegrationTest {
         bauschutt.setKilopreis(3);
         bauschutt.setMenge(7);
 
-        Bauschutt savedBauschutt = bauschuttRepository.createEntity(bauschutt);
+        Bauschutt savedBauschutt = bauschuttRepository.save(bauschutt);
         assertNotNull(savedBauschutt.getBauschuttId());
         assertThat(savedBauschutt.getArt(), is("Ziegel"));
         return savedBauschutt;

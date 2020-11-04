@@ -42,8 +42,8 @@ public class KundeErstelltAnfrageIntegrationTest {
         anfrage1.setKunde(kunde);
         anfrage2.setKunde(kunde);
 
-        Anfrage savedAnfrage1 = anfrageRepository.updateWithMerge(anfrage1);
-        Anfrage savedAnfrage2 = anfrageRepository.updateWithMerge(anfrage2);
+        Anfrage savedAnfrage1 = anfrageRepository.update(anfrage1);
+        Anfrage savedAnfrage2 = anfrageRepository.update(anfrage2);
 
         assertThat(savedAnfrage1.getKunde(), is(kunde));
         assertThat(savedAnfrage2.getKunde(), is(kunde));
@@ -57,7 +57,7 @@ public class KundeErstelltAnfrageIntegrationTest {
         kunde.setOrt("Berlin");
         kunde.setPlz("53343");
 
-        Kunde savedKunde = kundeRepository.createEntity(kunde);
+        Kunde savedKunde = kundeRepository.save(kunde);
 
         assertNotNull(savedKunde.getKundeId());
         assertThat(kunde.getStrasse(), is("Berliner Weg"));
@@ -74,7 +74,7 @@ public class KundeErstelltAnfrageIntegrationTest {
         anfrage.setFarbe("rot");
         anfrage.setPreisvorstellung(500000);
 
-        Anfrage savedAnfrage = anfrageRepository.createEntity(anfrage);
+        Anfrage savedAnfrage = anfrageRepository.save(anfrage);
 
         assertNotNull(savedAnfrage.getAnfrageId());
         assertThat(anfrage.getStrasse(), is("Binger"));

@@ -56,7 +56,7 @@ public class BauarbeiterIntegrationTest {
         Mitarbeiter mitarbeiter = createNewMitarbeiter();
         Bauarbeiter bauarbeiter = createNewBauarbeiter(mitarbeiter);
         bauarbeiter.setSchichtleiter(true);
-        Bauarbeiter updatedBauarbeiter = bauarbeiterRepository.updateWithMerge(bauarbeiter);
+        Bauarbeiter updatedBauarbeiter = bauarbeiterRepository.update(bauarbeiter);
 
         assertThat(updatedBauarbeiter, is(bauarbeiter));
     }
@@ -65,7 +65,7 @@ public class BauarbeiterIntegrationTest {
     public void deleteMitarbeiterDeletesBauarbeiter(){
         Mitarbeiter mitarbeiter = createNewMitarbeiter();
         Bauarbeiter bauarbeiter = createNewBauarbeiter(mitarbeiter);
-        mitarbeiterRepository.deleteEntity(mitarbeiter);
+        mitarbeiterRepository.delete(mitarbeiter);
 
         Mitarbeiter deletedMitarbeiter = mitarbeiterRepository.findById(mitarbeiter.getMitarbeiterId());
         Bauarbeiter deletedBauarbeiter = bauarbeiterRepository.findById(bauarbeiter.getMitarbeiterId());
@@ -82,7 +82,7 @@ public class BauarbeiterIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        mitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
+        mitarbeiter = mitarbeiterRepository.save(mitarbeiter);
 
         //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
         assertThat(mitarbeiter.getVorname(), is("Horst"));
@@ -103,7 +103,7 @@ public class BauarbeiterIntegrationTest {
         bauarbeiter.setSchichtleiter(false);
         bauarbeiter.setTarif(5000);
 
-        bauarbeiter = bauarbeiterRepository.createEntity(bauarbeiter);
+        bauarbeiter = bauarbeiterRepository.save(bauarbeiter);
 
         assertThat(bauarbeiter.getArbeitsschicht(), is("Frühschicht"));
         assertThat(bauarbeiter.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));

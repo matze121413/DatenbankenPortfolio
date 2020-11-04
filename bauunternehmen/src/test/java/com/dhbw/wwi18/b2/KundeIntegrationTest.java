@@ -43,7 +43,7 @@ public class KundeIntegrationTest {
     public void updateKunde(){
         Kunde kunde = createNewKunde();
         kunde.setNachname("Schulz");
-        Kunde updatedKunde = kundeRepository.updateWithMerge(kunde);
+        Kunde updatedKunde = kundeRepository.update(kunde);
 
         assertThat(updatedKunde, is(kunde));
     }
@@ -51,7 +51,7 @@ public class KundeIntegrationTest {
     @Test
     public void deleteKunde(){
         Kunde kunde = createNewKunde();
-        kundeRepository.deleteEntity(kunde);
+        kundeRepository.delete(kunde);
 
         Kunde deletedKunde = kundeRepository.findById(kunde.getKundeId());
         assertNull(deletedKunde);
@@ -66,7 +66,7 @@ public class KundeIntegrationTest {
         kunde.setOrt("Berlin");
         kunde.setPlz("53343");
 
-        Kunde savedKunde = kundeRepository.createEntity(kunde);
+        Kunde savedKunde = kundeRepository.save(kunde);
 
         assertNotNull(savedKunde.getKundeId());
         assertThat(kunde.getStrasse(), is("Berliner Weg"));

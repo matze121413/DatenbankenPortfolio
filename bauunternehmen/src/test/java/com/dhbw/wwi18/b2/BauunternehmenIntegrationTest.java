@@ -45,7 +45,7 @@ public class BauunternehmenIntegrationTest {
     public void updateBauunternehmen(){
         Bauunternehmen bauunternehmen = createNewBauunternehmen();
         bauunternehmen.setName("Neuer Name");
-        Bauunternehmen updatedBauunternehmen = bauunternehmenRepository.updateWithMerge(bauunternehmen);
+        Bauunternehmen updatedBauunternehmen = bauunternehmenRepository.update(bauunternehmen);
 
         assertThat(updatedBauunternehmen, is(bauunternehmen));
     }
@@ -53,7 +53,7 @@ public class BauunternehmenIntegrationTest {
     @Test
     public void deleteBauunternehmen(){
         Bauunternehmen bauunternehmen = createNewBauunternehmen();
-        bauunternehmenRepository.deleteEntity(bauunternehmen);
+        bauunternehmenRepository.delete(bauunternehmen);
 
         Bauunternehmen deletedBauunternehmen = bauunternehmenRepository.findById(bauunternehmen.getUnternehmenId());
         assertNull(deletedBauunternehmen);
@@ -68,7 +68,7 @@ public class BauunternehmenIntegrationTest {
         bauunternehmen.setOrt("Karlsruhe");
         bauunternehmen.setPlz("53604");
 
-        Bauunternehmen savedBauunternehmen = bauunternehmenRepository.createEntity(bauunternehmen);
+        Bauunternehmen savedBauunternehmen = bauunternehmenRepository.save(bauunternehmen);
 
         assertNotNull(savedBauunternehmen.getUnternehmenId());
         assertThat(bauunternehmen.getName(), is("BobDerMeister"));

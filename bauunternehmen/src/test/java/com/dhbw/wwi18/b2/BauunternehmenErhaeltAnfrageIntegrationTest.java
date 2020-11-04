@@ -38,8 +38,8 @@ public class BauunternehmenErhaeltAnfrageIntegrationTest {
         anfrage1.setBauunternehmen(bauunternehmen);
         anfrage2.setBauunternehmen(bauunternehmen);
 
-        Anfrage savedAnfrage1 = anfrageRepository.updateWithMerge(anfrage1);
-        Anfrage savedAnfrage2 = anfrageRepository.updateWithMerge(anfrage2);
+        Anfrage savedAnfrage1 = anfrageRepository.update(anfrage1);
+        Anfrage savedAnfrage2 = anfrageRepository.update(anfrage2);
 
         assertThat(savedAnfrage1.getBauunternehmen(), is(bauunternehmen));
         assertThat(savedAnfrage2.getBauunternehmen(), is(bauunternehmen));
@@ -53,7 +53,7 @@ public class BauunternehmenErhaeltAnfrageIntegrationTest {
         bauunternehmen.setOrt("Kaiserslautern");
         bauunternehmen.setPlz("53604");
 
-        Bauunternehmen savedBauunternehmen = bauunternehmenRepository.createEntity(bauunternehmen);
+        Bauunternehmen savedBauunternehmen = bauunternehmenRepository.save(bauunternehmen);
 
         assertNotNull(savedBauunternehmen.getUnternehmenId());
         assertThat(bauunternehmen.getName(), is("BobDerMeister"));
@@ -70,7 +70,7 @@ public class BauunternehmenErhaeltAnfrageIntegrationTest {
         anfrage.setFarbe("rot");
         anfrage.setPreisvorstellung(500000);
 
-        Anfrage savedAnfrage = anfrageRepository.createEntity(anfrage);
+        Anfrage savedAnfrage = anfrageRepository.save(anfrage);
 
         assertNotNull(savedAnfrage.getAnfrageId());
         assertThat(anfrage.getStrasse(), is("Binger"));

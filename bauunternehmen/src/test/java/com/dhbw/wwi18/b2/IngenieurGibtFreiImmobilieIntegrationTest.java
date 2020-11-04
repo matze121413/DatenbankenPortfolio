@@ -48,8 +48,8 @@ public class IngenieurGibtFreiImmobilieIntegrationTest {
         immobilie1.setIngenieur(ingenieur);
         immobilie2.setIngenieur(ingenieur);
 
-        Immobilie savedImmobilie1 = immobilieRepository.updateWithMerge(immobilie1);
-        Immobilie savedImmobilie2 = immobilieRepository.updateWithMerge(immobilie2);
+        Immobilie savedImmobilie1 = immobilieRepository.update(immobilie1);
+        Immobilie savedImmobilie2 = immobilieRepository.update(immobilie2);
 
         assertThat(savedImmobilie1.getIngenieur(), is(ingenieur));
         assertThat(savedImmobilie2.getIngenieur(), is(ingenieur));
@@ -64,7 +64,7 @@ public class IngenieurGibtFreiImmobilieIntegrationTest {
         ingenieur.setMitarbeiter(savedMitarbeiter);
         ingenieur.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        ingenieur = ingenieurRepository.createEntity(ingenieur);
+        ingenieur = ingenieurRepository.save(ingenieur);
 
         assertThat(ingenieur.getStrasse(), is("im Sand"));
         assertThat(ingenieur.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));
@@ -79,7 +79,7 @@ public class IngenieurGibtFreiImmobilieIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        return mitarbeiterRepository.createEntity(mitarbeiter);
+        return mitarbeiterRepository.save(mitarbeiter);
     }
 
     private Immobilie createNewImmobilie(){
@@ -88,7 +88,7 @@ public class IngenieurGibtFreiImmobilieIntegrationTest {
         immobilie.setStatus("fertig");
         immobilie.setFlaeche(150);
 
-        Immobilie savedImmobilie = immobilieRepository.createEntity(immobilie);
+        Immobilie savedImmobilie = immobilieRepository.save(immobilie);
 
         assertNotNull(savedImmobilie.getImmobilieId());
         assertThat(immobilie.getFarbe(), is("gelb"));

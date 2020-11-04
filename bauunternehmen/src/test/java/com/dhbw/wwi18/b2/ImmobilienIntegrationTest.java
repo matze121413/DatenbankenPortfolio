@@ -42,7 +42,7 @@ public class ImmobilienIntegrationTest {
     public void updateImmobilie(){
         Immobilie immobilie = createNewImmobilie();
         immobilie.setFarbe("blau");
-        Immobilie updatedImmobilie = immobilieRepository.updateWithMerge(immobilie);
+        Immobilie updatedImmobilie = immobilieRepository.update(immobilie);
 
         assertThat(updatedImmobilie, is(immobilie));
     }
@@ -50,7 +50,7 @@ public class ImmobilienIntegrationTest {
     @Test
     public void deleteImmobilie(){
         Immobilie immobilie = createNewImmobilie();
-        immobilieRepository.deleteEntity(immobilie);
+        immobilieRepository.delete(immobilie);
 
         Immobilie deletedImmobilie = immobilieRepository.findById(immobilie.getImmobilieId());
         assertNull(deletedImmobilie);
@@ -63,7 +63,7 @@ public class ImmobilienIntegrationTest {
         immobilie.setStatus("fertig");
         immobilie.setFlaeche(150);
 
-        Immobilie savedImmobilie = immobilieRepository.createEntity(immobilie);
+        Immobilie savedImmobilie = immobilieRepository.save(immobilie);
 
         assertNotNull(savedImmobilie.getImmobilieId());
         assertThat(immobilie.getFarbe(), is("gelb"));

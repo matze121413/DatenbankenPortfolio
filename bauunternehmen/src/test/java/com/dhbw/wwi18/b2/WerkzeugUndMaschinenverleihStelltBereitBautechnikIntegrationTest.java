@@ -44,7 +44,7 @@ public class WerkzeugUndMaschinenverleihStelltBereitBautechnikIntegrationTest {
         werkzeugUndMaschinenverleih.setBautechnikList(bautechnikList);
 
         WerkzeugUndMaschinenverleih savedWerkzeugUndMaschinenverleih =
-                verleihRepository.updateWithMerge(werkzeugUndMaschinenverleih);
+                verleihRepository.update(werkzeugUndMaschinenverleih);
         Bautechnik savedBautechnik1 = bautechnikRepository.findById(bautechnik1.getBautechnikId());
         Bautechnik savedBautechnik2 = bautechnikRepository.findById(bautechnik2.getBautechnikId());
 
@@ -64,7 +64,7 @@ public class WerkzeugUndMaschinenverleihStelltBereitBautechnikIntegrationTest {
                 Arrays.asList(werkzeugUndMaschinenverleih1, werkzeugUndMaschinenverleih2);
         bautechnik.setWerkzeugUndMaschinenverleihList(werkzeugUndMaschinenverleihList);
 
-        Bautechnik savedBautechnik = bautechnikRepository.updateWithMerge(bautechnik);
+        Bautechnik savedBautechnik = bautechnikRepository.update(bautechnik);
         WerkzeugUndMaschinenverleih savedWerkzeugUndMaschinenverleih1 =
                 verleihRepository.findById(werkzeugUndMaschinenverleih1.getVerleihId());
         WerkzeugUndMaschinenverleih savedWerkzeugUndMaschinenverleih2 =
@@ -83,7 +83,7 @@ public class WerkzeugUndMaschinenverleihStelltBereitBautechnikIntegrationTest {
         werkzeugUndMaschinenverleih.setPlz("68305");
         werkzeugUndMaschinenverleih.setStrasse("Carl-Reuther-Straße");
         werkzeugUndMaschinenverleih.setTelefonnummer("0621-43715-500");
-        return verleihRepository.createEntity(werkzeugUndMaschinenverleih);
+        return verleihRepository.save(werkzeugUndMaschinenverleih);
     }
 
     private Bautechnik createNewBautechnik() {
@@ -94,6 +94,6 @@ public class WerkzeugUndMaschinenverleihStelltBereitBautechnikIntegrationTest {
         bautechnik.setLeihdauer(20);
         bautechnik.setArt("Kleinbagger");
 
-        return bautechnikRepository.createEntity(bautechnik);
+        return bautechnikRepository.save(bautechnik);
     }
 }

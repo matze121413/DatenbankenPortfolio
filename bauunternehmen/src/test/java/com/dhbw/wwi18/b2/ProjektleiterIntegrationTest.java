@@ -56,7 +56,7 @@ public class ProjektleiterIntegrationTest {
         Projektleiter projektleiter = createNewProjektleiter(mitarbeiter);
         projektleiter.setGesamtProjektanzahl(43);
         projektleiter.setAktProjektanzahl(2);
-        Projektleiter updatedProjektleiter = projektleiterRepository.updateWithMerge(projektleiter);
+        Projektleiter updatedProjektleiter = projektleiterRepository.update(projektleiter);
 
         assertThat(updatedProjektleiter, is(projektleiter));
     }
@@ -65,7 +65,7 @@ public class ProjektleiterIntegrationTest {
     public void deleteMitarbeiterDeletesProjektleiter() {
         Mitarbeiter mitarbeiter = createNewMitarbeiter();
         Projektleiter projektleiter = createNewProjektleiter(mitarbeiter);
-        mitarbeiterRepository.deleteEntity(mitarbeiter);
+        mitarbeiterRepository.delete(mitarbeiter);
 
         Mitarbeiter deletedMitarbeiter = mitarbeiterRepository.findById(mitarbeiter.getMitarbeiterId());
         Projektleiter deletedProjektleiter = projektleiterRepository.findById(projektleiter.getMitarbeiterId());
@@ -82,7 +82,7 @@ public class ProjektleiterIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        mitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
+        mitarbeiter = mitarbeiterRepository.save(mitarbeiter);
 
         //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
         assertThat(mitarbeiter.getVorname(), is("Horst"));
@@ -100,7 +100,7 @@ public class ProjektleiterIntegrationTest {
         projektleiter.setMitarbeiter(savedMitarbeiter);
         projektleiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        projektleiter = projektleiterRepository.createEntity(projektleiter);
+        projektleiter = projektleiterRepository.save(projektleiter);
 
         assertThat(projektleiter.getGesamtProjektanzahl(), is(42));
         assertThat(projektleiter.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));

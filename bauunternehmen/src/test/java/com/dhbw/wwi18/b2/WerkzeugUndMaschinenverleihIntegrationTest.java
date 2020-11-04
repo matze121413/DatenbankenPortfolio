@@ -47,7 +47,7 @@ public class WerkzeugUndMaschinenverleihIntegrationTest {
         WerkzeugUndMaschinenverleih werkzeugUndMaschinenverleih = createNewWerkzeugUndMaschinenverleih();
         werkzeugUndMaschinenverleih.setErfahrung(13);
         WerkzeugUndMaschinenverleih updatedWerkzeugUndMaschinenverleih =
-                verleihRepository.updateWithMerge(werkzeugUndMaschinenverleih);
+                verleihRepository.update(werkzeugUndMaschinenverleih);
 
         assertThat(updatedWerkzeugUndMaschinenverleih, is(werkzeugUndMaschinenverleih));
     }
@@ -55,7 +55,7 @@ public class WerkzeugUndMaschinenverleihIntegrationTest {
     @Test
     public void deleteWerkzeugUndMaschinenverleih() {
         WerkzeugUndMaschinenverleih werkzeugUndMaschinenverleih = createNewWerkzeugUndMaschinenverleih();
-        verleihRepository.deleteEntity(werkzeugUndMaschinenverleih);
+        verleihRepository.delete(werkzeugUndMaschinenverleih);
 
         WerkzeugUndMaschinenverleih deletedWerkzeugUndMaschinenverleih =
                 verleihRepository.findById(werkzeugUndMaschinenverleih.getVerleihId());
@@ -72,7 +72,7 @@ public class WerkzeugUndMaschinenverleihIntegrationTest {
         werkzeugUndMaschinenverleih.setStrasse("Carl-Reuther-Straße");
         werkzeugUndMaschinenverleih.setTelefonnummer("0621-43715-500");
         WerkzeugUndMaschinenverleih savedWerkzeugUndMaschinenverleih =
-                verleihRepository.createEntity(werkzeugUndMaschinenverleih);
+                verleihRepository.save(werkzeugUndMaschinenverleih);
 
         assertNotNull(savedWerkzeugUndMaschinenverleih.getVerleihId());
         assertThat(savedWerkzeugUndMaschinenverleih.getName(), is("Mike's Werkzeug Express Maschinenvermietung"));

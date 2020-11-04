@@ -44,7 +44,7 @@ public class BauprojektBenoetigtWerkstoffIntegrationTest {
         List<Werkstoff> werkstoffList = Arrays.asList(werkstoff1, werkstoff2);
         bauprojekt.setWerkstoffList(werkstoffList);
 
-        Bauprojekt savedBauprojekt = bauprojektRepository.updateWithMerge(bauprojekt);
+        Bauprojekt savedBauprojekt = bauprojektRepository.update(bauprojekt);
         Werkstoff savedWerkstoff1 = werkstoffRepository.findById(werkstoff1.getWerkstoffId());
         Werkstoff savedWerkstoff2 = werkstoffRepository.findById(werkstoff2.getWerkstoffId());
 
@@ -63,7 +63,7 @@ public class BauprojektBenoetigtWerkstoffIntegrationTest {
         List<Bauprojekt> bauprojektList = Arrays.asList(bauprojekt1, bauprojekt2);
         werkstoff.setBauprojektList(bauprojektList);
 
-        Werkstoff savedWerkstoff = werkstoffRepository.updateWithMerge(werkstoff);
+        Werkstoff savedWerkstoff = werkstoffRepository.update(werkstoff);
         Bauprojekt savedBauprojekt1 = bauprojektRepository.findById(bauprojekt1.getBauprojektId());
         Bauprojekt savedBauprojekt2 = bauprojektRepository.findById(bauprojekt2.getBauprojektId());
 
@@ -80,7 +80,7 @@ public class BauprojektBenoetigtWerkstoffIntegrationTest {
         bauprojekt.setGewinn(500000);
         bauprojekt.setKosten(250000);
 
-        return bauprojektRepository.createEntity(bauprojekt);
+        return bauprojektRepository.save(bauprojekt);
 
     }
 
@@ -90,6 +90,6 @@ public class BauprojektBenoetigtWerkstoffIntegrationTest {
         werkstoff.setGewicht(30);
         werkstoff.setKilopreis(5);
         werkstoff.setMenge(75);
-        return werkstoffRepository.createEntity(werkstoff);
+        return werkstoffRepository.save(werkstoff);
     }
 }

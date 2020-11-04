@@ -45,7 +45,7 @@ public class WerkstofflieferantLiefertWerkstoffIntegrationTest {
         List<Werkstoff> werkstoffList = Arrays.asList(werkstoff1, werkstoff2);
         werkstofflieferant.setWerkstoffList(werkstoffList);
 
-        Werkstofflieferant savedWerkstofflieferant = werkstofflieferantRepository.updateWithMerge(werkstofflieferant);
+        Werkstofflieferant savedWerkstofflieferant = werkstofflieferantRepository.update(werkstofflieferant);
         Werkstoff savedWerkstoff1 = werkstoffRepository.findById(werkstoff1.getWerkstoffId());
         Werkstoff savedWerkstoff2 = werkstoffRepository.findById(werkstoff2.getWerkstoffId());
 
@@ -65,7 +65,7 @@ public class WerkstofflieferantLiefertWerkstoffIntegrationTest {
         List<Werkstofflieferant> werkstofflieferantList = Arrays.asList(werkstofflieferant1, werkstofflieferant2);
         werkstoff.setWerkstofflieferantList(werkstofflieferantList);
 
-        Werkstoff savedWerkstoff = werkstoffRepository.updateWithMerge(werkstoff);
+        Werkstoff savedWerkstoff = werkstoffRepository.update(werkstoff);
         Werkstofflieferant savedWerkstoffLieferant1 = werkstofflieferantRepository.findById(werkstofflieferant1.getLieferantId());
         Werkstofflieferant savedWerkstofflieferant2 = werkstofflieferantRepository.findById(werkstofflieferant2.getLieferantId());
 
@@ -83,7 +83,7 @@ public class WerkstofflieferantLiefertWerkstoffIntegrationTest {
         werkstofflieferant.setStrasse("Stammweg");
         werkstofflieferant.setTelefonnummer("0360555970");
 
-        return werkstofflieferantRepository.createEntity(werkstofflieferant);
+        return werkstofflieferantRepository.save(werkstofflieferant);
     }
 
     private Werkstoff createNewWerkstoff() {
@@ -92,6 +92,6 @@ public class WerkstofflieferantLiefertWerkstoffIntegrationTest {
         werkstoff.setGewicht(30);
         werkstoff.setKilopreis(5);
         werkstoff.setMenge(75);
-        return werkstoffRepository.createEntity(werkstoff);
+        return werkstoffRepository.save(werkstoff);
     }
 }

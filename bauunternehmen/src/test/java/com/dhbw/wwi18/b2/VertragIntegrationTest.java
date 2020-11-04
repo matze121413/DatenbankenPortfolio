@@ -43,7 +43,7 @@ public class VertragIntegrationTest {
     public void updateVertrag(){
         Vertrag vertrag = createNewVertrag();
         vertrag.setPreis(500000);
-        Vertrag updatedVertrag = vertragRepository.updateWithMerge(vertrag);
+        Vertrag updatedVertrag = vertragRepository.update(vertrag);
 
         assertThat(updatedVertrag, is(vertrag));
     }
@@ -51,7 +51,7 @@ public class VertragIntegrationTest {
     @Test
     public void deleteVertrag(){
         Vertrag vertrag = createNewVertrag();
-        vertragRepository.deleteEntity(vertrag);
+        vertragRepository.delete(vertrag);
 
         Vertrag deletedVertrag = vertragRepository.findById(vertrag.getVertragId());
         assertNull(deletedVertrag);
@@ -65,7 +65,7 @@ public class VertragIntegrationTest {
         vertrag.setLaufzeit(30);
         vertrag.setGegenstand("Haus");
 
-        Vertrag savedVertrag = vertragRepository.createEntity(vertrag);
+        Vertrag savedVertrag = vertragRepository.save(vertrag);
 
         assertNotNull(savedVertrag.getVertragId());
         assertThat(vertrag.getPreis(), is(200000));

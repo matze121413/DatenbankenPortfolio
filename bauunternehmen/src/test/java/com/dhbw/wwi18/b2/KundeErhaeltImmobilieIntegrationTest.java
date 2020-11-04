@@ -42,8 +42,8 @@ public class KundeErhaeltImmobilieIntegrationTest {
         immobilie1.setKunde(kunde);
         immobilie2.setKunde(kunde);
 
-        Immobilie savedImmobilie1 = immobilieRepository.updateWithMerge(immobilie1);
-        Immobilie savedImmobilie2 = immobilieRepository.updateWithMerge(immobilie2);
+        Immobilie savedImmobilie1 = immobilieRepository.update(immobilie1);
+        Immobilie savedImmobilie2 = immobilieRepository.update(immobilie2);
 
         assertThat(savedImmobilie1.getKunde(), is(kunde));
         assertThat(savedImmobilie2.getKunde(), is(kunde));
@@ -55,7 +55,7 @@ public class KundeErhaeltImmobilieIntegrationTest {
         immobilie.setStatus("fertig");
         immobilie.setFlaeche(150);
 
-        Immobilie savedImmobilie = immobilieRepository.createEntity(immobilie);
+        Immobilie savedImmobilie = immobilieRepository.save(immobilie);
 
         assertNotNull(savedImmobilie.getImmobilieId());
         assertThat(immobilie.getFarbe(), is("gelb"));
@@ -69,7 +69,7 @@ public class KundeErhaeltImmobilieIntegrationTest {
         kunde.setOrt("Berlin");
         kunde.setPlz("53343");
 
-        Kunde savedKunde = kundeRepository.createEntity(kunde);
+        Kunde savedKunde = kundeRepository.save(kunde);
 
         assertNotNull(savedKunde.getKundeId());
         assertThat(kunde.getStrasse(), is("Berliner Weg"));

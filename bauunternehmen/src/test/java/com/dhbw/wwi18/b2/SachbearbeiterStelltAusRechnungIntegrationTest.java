@@ -53,8 +53,8 @@ public class SachbearbeiterStelltAusRechnungIntegrationTest {
         rechnung1.setSachbearbeiter(sachbearbeiter);
         rechnung2.setSachbearbeiter(sachbearbeiter);
 
-        Rechnung savedRechnung1 = rechnungRepository.updateWithMerge(rechnung1);
-        Rechnung savedRechnung2 = rechnungRepository.updateWithMerge(rechnung2);
+        Rechnung savedRechnung1 = rechnungRepository.update(rechnung1);
+        Rechnung savedRechnung2 = rechnungRepository.update(rechnung2);
 
         assertThat(savedRechnung1.getSachbearbeiter(), is(sachbearbeiter));
         assertThat(savedRechnung2.getSachbearbeiter(), is(sachbearbeiter));
@@ -68,7 +68,7 @@ public class SachbearbeiterStelltAusRechnungIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        return mitarbeiterRepository.createEntity(mitarbeiter);
+        return mitarbeiterRepository.save(mitarbeiter);
     }
 
     private Rechnung createNewRechnung(){
@@ -79,7 +79,7 @@ public class SachbearbeiterStelltAusRechnungIntegrationTest {
         rechnung.setFrist(16101996);
         rechnung.setVertrag(createNewVertrag());
 
-        Rechnung savedRechnung = rechnungRepository.createEntity(rechnung);
+        Rechnung savedRechnung = rechnungRepository.save(rechnung);
 
         assertNotNull(savedRechnung.getRechnungId());
         assertThat(rechnung.getPreis(), is(2000000));
@@ -93,7 +93,7 @@ public class SachbearbeiterStelltAusRechnungIntegrationTest {
         vertrag.setLaufzeit(30);
         vertrag.setGegenstand("Haus");
 
-        return vertragRepository.createEntity(vertrag);
+        return vertragRepository.save(vertrag);
     }
 
     private Sachbearbeiter createNewSachbearbeiter(Mitarbeiter savedMitarbeiter) {
@@ -102,7 +102,7 @@ public class SachbearbeiterStelltAusRechnungIntegrationTest {
         sachbearbeiter.setMitarbeiter(savedMitarbeiter);
         sachbearbeiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        sachbearbeiter = sachbearbeiterRepository.createEntity(sachbearbeiter);
+        sachbearbeiter = sachbearbeiterRepository.save(sachbearbeiter);
 
         assertThat(sachbearbeiter.getTarif(), is(5));
         assertThat(sachbearbeiter.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));

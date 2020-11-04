@@ -46,7 +46,7 @@ public class BautechnikIntegrationTest {
     public void updateBautechnik(){
         Bautechnik bautechnik = createNewBautechnik();
         bautechnik.setLeihdauer(50);
-        Bautechnik updatedBautechnik = bautechnikRepository.updateWithMerge(bautechnik);
+        Bautechnik updatedBautechnik = bautechnikRepository.update(bautechnik);
 
         assertThat(updatedBautechnik, is(bautechnik));
     }
@@ -54,7 +54,7 @@ public class BautechnikIntegrationTest {
     @Test
     public void deleteBautechnik(){
         Bautechnik bautechnik = createNewBautechnik();
-        bautechnikRepository.deleteEntity(bautechnik);
+        bautechnikRepository.delete(bautechnik);
 
         Bautechnik deletedBautechnik = bautechnikRepository.findById(bautechnik.getBautechnikId());
         assertNull(deletedBautechnik);
@@ -70,7 +70,7 @@ public class BautechnikIntegrationTest {
         bautechnik.setLeihdauer(20);
         bautechnik.setArt("Kleinbagger");
 
-        Bautechnik savedBautechnik = bautechnikRepository.createEntity(bautechnik);
+        Bautechnik savedBautechnik = bautechnikRepository.save(bautechnik);
 
         assertNotNull(savedBautechnik.getBautechnikId());
         assertThat(bautechnik.getArt(), is("Kleinbagger"));

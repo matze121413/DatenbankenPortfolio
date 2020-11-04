@@ -44,7 +44,7 @@ public class BauprojektBenoetigtBautechnikIntegrationTest {
         List<Bautechnik> bautechnikList = Arrays.asList(bautechnik1,bautechnik2);
         bauprojekt.setBautechnikList(bautechnikList);
 
-        Bauprojekt savedBauprojekt = bauprojektRepository.updateWithMerge(bauprojekt);
+        Bauprojekt savedBauprojekt = bauprojektRepository.update(bauprojekt);
         Bautechnik savedBautechnik1 = bautechnikRepository.findById(bautechnik1.getBautechnikId());
         Bautechnik savedBautechnik2 = bautechnikRepository.findById(bautechnik2.getBautechnikId());
 
@@ -63,7 +63,7 @@ public class BauprojektBenoetigtBautechnikIntegrationTest {
         List<Bauprojekt> bauprojektList = Arrays.asList(bauprojekt1, bauprojekt2);
         bautechnik.setBauprojektList(bauprojektList);
 
-        Bautechnik savedBautechnik = bautechnikRepository.updateWithMerge(bautechnik);
+        Bautechnik savedBautechnik = bautechnikRepository.update(bautechnik);
         Bauprojekt savedBauprojekt1 = bauprojektRepository.findById(bauprojekt1.getBauprojektId());
         Bauprojekt savedBauprojekt2 = bauprojektRepository.findById(bauprojekt2.getBauprojektId());
 
@@ -80,7 +80,7 @@ public class BauprojektBenoetigtBautechnikIntegrationTest {
         bauprojekt.setGewinn(500000);
         bauprojekt.setKosten(250000);
 
-        Bauprojekt savedBauprojekt = bauprojektRepository.createEntity(bauprojekt);
+        Bauprojekt savedBauprojekt = bauprojektRepository.save(bauprojekt);
         assertNotNull(savedBauprojekt.getBauprojektId());
         assertThat(savedBauprojekt.getEndDatum(), is(20230514));
         return savedBauprojekt;
@@ -94,6 +94,6 @@ public class BauprojektBenoetigtBautechnikIntegrationTest {
         bautechnik.setLeihdauer(20);
         bautechnik.setArt("Kleinbagger");
 
-        return bautechnikRepository.createEntity(bautechnik);
+        return bautechnikRepository.save(bautechnik);
     }
 }

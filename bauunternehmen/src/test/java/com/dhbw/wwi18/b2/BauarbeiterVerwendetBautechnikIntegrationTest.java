@@ -51,7 +51,7 @@ public class BauarbeiterVerwendetBautechnikIntegrationTest {
         List<Bauarbeiter> bauarbeiterList = Arrays.asList(bauarbeiter1, bauarbeiter2);
         bautechnik.setBauarbeiterList(bauarbeiterList);
 
-        Bautechnik savedBautechnik = bautechnikRepository.updateWithMerge(bautechnik);
+        Bautechnik savedBautechnik = bautechnikRepository.update(bautechnik);
         Bauarbeiter savedBauarbeiter1 = bauarbeiterRepository.findById(bauarbeiter1.getMitarbeiterId());
         Bauarbeiter savedBauarbeiter2 = bauarbeiterRepository.findById(bauarbeiter2.getMitarbeiterId());
 
@@ -71,7 +71,7 @@ public class BauarbeiterVerwendetBautechnikIntegrationTest {
         List<Bautechnik> bautechnikList = Arrays.asList(bautechnik1,bautechnik2);
         bauarbeiter1.setBautechnikList(bautechnikList);
 
-        Bauarbeiter savedBauarbeiter = bauarbeiterRepository.updateWithMerge(bauarbeiter1);
+        Bauarbeiter savedBauarbeiter = bauarbeiterRepository.update(bauarbeiter1);
         Bautechnik savedBautechnik1 = bautechnikRepository.findById(bautechnik1.getBautechnikId());
         Bautechnik savedBautechnik2 = bautechnikRepository.findById(bautechnik2.getBautechnikId());
 
@@ -88,7 +88,7 @@ public class BauarbeiterVerwendetBautechnikIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        return mitarbeiterRepository.createEntity(mitarbeiter);
+        return mitarbeiterRepository.save(mitarbeiter);
     }
 
     private Bauarbeiter createNewBauarbeiter(Mitarbeiter savedMitarbeiter){
@@ -101,7 +101,7 @@ public class BauarbeiterVerwendetBautechnikIntegrationTest {
         bauarbeiter.setSchichtleiter(false);
         bauarbeiter.setTarif(5000);
 
-        return bauarbeiterRepository.createEntity(bauarbeiter);
+        return bauarbeiterRepository.save(bauarbeiter);
     }
 
     private Bautechnik createNewBautechnik(){
@@ -112,6 +112,6 @@ public class BauarbeiterVerwendetBautechnikIntegrationTest {
         bautechnik.setLeihdauer(20);
         bautechnik.setArt("Kleinbagger");
 
-        return bautechnikRepository.createEntity(bautechnik);
+        return bautechnikRepository.save(bautechnik);
     }
 }

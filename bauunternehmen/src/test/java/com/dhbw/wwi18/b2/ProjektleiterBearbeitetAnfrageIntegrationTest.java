@@ -46,8 +46,8 @@ public class ProjektleiterBearbeitetAnfrageIntegrationTest {
         anfrage1.setProjektleiter(projektleiter);
         anfrage2.setProjektleiter(projektleiter);
 
-        Anfrage savedAnfrage1 = anfrageRepository.updateWithMerge(anfrage1);
-        Anfrage savedAnfrage2 = anfrageRepository.updateWithMerge(anfrage2);
+        Anfrage savedAnfrage1 = anfrageRepository.update(anfrage1);
+        Anfrage savedAnfrage2 = anfrageRepository.update(anfrage2);
 
         assertThat(savedAnfrage1.getProjektleiter(), is(projektleiter));
         assertThat(savedAnfrage2.getProjektleiter(), is(projektleiter));
@@ -62,7 +62,7 @@ public class ProjektleiterBearbeitetAnfrageIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        return mitarbeiterRepository.createEntity(mitarbeiter);
+        return mitarbeiterRepository.save(mitarbeiter);
     }
 
     private Projektleiter createNewProjektleiter(Mitarbeiter savedMitarbeiter) {
@@ -72,7 +72,7 @@ public class ProjektleiterBearbeitetAnfrageIntegrationTest {
         projektleiter.setMitarbeiter(savedMitarbeiter);
         projektleiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        return projektleiterRepository.createEntity(projektleiter);
+        return projektleiterRepository.save(projektleiter);
     }
 
     private Anfrage createNewAnfrage(){
@@ -85,7 +85,7 @@ public class ProjektleiterBearbeitetAnfrageIntegrationTest {
         anfrage.setFarbe("rot");
         anfrage.setPreisvorstellung(500000);
 
-        Anfrage savedAnfrage = anfrageRepository.createEntity(anfrage);
+        Anfrage savedAnfrage = anfrageRepository.save(anfrage);
 
         assertNotNull(savedAnfrage.getAnfrageId());
         assertThat(anfrage.getStrasse(), is("Binger"));

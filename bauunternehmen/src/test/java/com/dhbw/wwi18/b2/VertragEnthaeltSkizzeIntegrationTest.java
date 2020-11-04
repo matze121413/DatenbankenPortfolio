@@ -41,8 +41,8 @@ public class VertragEnthaeltSkizzeIntegrationTest {
         skizze1.setVertrag(vertrag);
         skizze2.setVertrag(vertrag);
 
-        Skizze savedSkizze1 = skizzeRepository.updateWithMerge(skizze1);
-        Skizze savedSkizze2 = skizzeRepository.updateWithMerge(skizze2);
+        Skizze savedSkizze1 = skizzeRepository.update(skizze1);
+        Skizze savedSkizze2 = skizzeRepository.update(skizze2);
 
         assertThat(savedSkizze1.getVertrag(), is(vertrag));
         assertThat(savedSkizze2.getVertrag(), is(vertrag));
@@ -53,7 +53,7 @@ public class VertragEnthaeltSkizzeIntegrationTest {
         skizze.setFlaeche(500);
         skizze.setRaum("Raum");
 
-        Skizze savedSkizze = skizzeRepository.createEntity(skizze);
+        Skizze savedSkizze = skizzeRepository.save(skizze);
 
         assertNotNull(savedSkizze.getSkizzeId());
         assertThat(skizze.getDetailgrad(), is("sehr hoch"));
@@ -66,7 +66,7 @@ public class VertragEnthaeltSkizzeIntegrationTest {
         vertrag.setLaufzeit(30);
         vertrag.setGegenstand("Haus");
 
-        Vertrag savedVertrag = vertragRepository.createEntity(vertrag);
+        Vertrag savedVertrag = vertragRepository.save(vertrag);
 
         assertNotNull(savedVertrag.getVertragId());
         assertThat(vertrag.getPreis(), is(200000));

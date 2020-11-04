@@ -48,7 +48,7 @@ public class ProjektleiterKontaktiertArchitektIntegrationTest {
 
         architekt.setProjektleiter(projektleiter);
 
-        Architekt savedArchitekt = architektRepository.updateWithMerge(architekt);
+        Architekt savedArchitekt = architektRepository.update(architekt);
         Projektleiter savedProjektleiter = projektleiterRepository.findById(projektleiter.getMitarbeiterId());
 
         assertThat(savedArchitekt.getProjektleiter(), is(projektleiter));
@@ -63,7 +63,7 @@ public class ProjektleiterKontaktiertArchitektIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        mitarbeiter = mitarbeiterRepository.createEntity(mitarbeiter);
+        mitarbeiter = mitarbeiterRepository.save(mitarbeiter);
 
         //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
         assertThat(mitarbeiter.getVorname(), is("Horst"));
@@ -81,7 +81,7 @@ public class ProjektleiterKontaktiertArchitektIntegrationTest {
         projektleiter.setMitarbeiter(savedMitarbeiter);
         projektleiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        projektleiter = projektleiterRepository.createEntity(projektleiter);
+        projektleiter = projektleiterRepository.save(projektleiter);
 
         assertThat(projektleiter.getGesamtProjektanzahl(), is(42));
         assertThat(projektleiter.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));
@@ -98,7 +98,7 @@ public class ProjektleiterKontaktiertArchitektIntegrationTest {
         architekt.setOrt("Köln");
         architekt.setPlz("50667");
         architekt.setFachrichtung("Aussenarchitekt");
-        architekt = architektRepository.createEntity(architekt);
+        architekt = architektRepository.save(architekt);
 
         assertThat(architekt.getStrasse(), is("Pfad"));
         assertThat(architekt.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));

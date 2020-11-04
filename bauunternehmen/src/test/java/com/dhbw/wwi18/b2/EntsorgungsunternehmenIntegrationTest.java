@@ -47,7 +47,7 @@ public class EntsorgungsunternehmenIntegrationTest {
         Entsorgungsunternehmen entsorgungsunternehmen = createNewEntsorgungsunternehmen();
         entsorgungsunternehmen.setAbholzeit("13:00");
         Entsorgungsunternehmen updatedEntsorgungsunternehmen =
-                entsorgungsunternehmenRepository.updateWithMerge(entsorgungsunternehmen);
+                entsorgungsunternehmenRepository.update(entsorgungsunternehmen);
 
         assertThat(updatedEntsorgungsunternehmen, is(entsorgungsunternehmen));
     }
@@ -55,7 +55,7 @@ public class EntsorgungsunternehmenIntegrationTest {
     @Test
     public void deleteEntsorgungsunternehmen(){
         Entsorgungsunternehmen entsorgungsunternehmen = createNewEntsorgungsunternehmen();
-        entsorgungsunternehmenRepository.deleteEntity(entsorgungsunternehmen);
+        entsorgungsunternehmenRepository.delete(entsorgungsunternehmen);
 
         Entsorgungsunternehmen deletedEntsorgungsunternehmen =
                 entsorgungsunternehmenRepository.findById(entsorgungsunternehmen.getEntsorgungId());
@@ -73,7 +73,7 @@ public class EntsorgungsunternehmenIntegrationTest {
         entsorgungsunternehmen.setTelefonnummer("07261/931-0");
 
         Entsorgungsunternehmen savedEntsorgungsunternehmen =
-                entsorgungsunternehmenRepository.createEntity(entsorgungsunternehmen);
+                entsorgungsunternehmenRepository.save(entsorgungsunternehmen);
         assertNotNull(savedEntsorgungsunternehmen.getEntsorgungId());
         assertThat(savedEntsorgungsunternehmen.getName(), is("AVR"));
         return savedEntsorgungsunternehmen;

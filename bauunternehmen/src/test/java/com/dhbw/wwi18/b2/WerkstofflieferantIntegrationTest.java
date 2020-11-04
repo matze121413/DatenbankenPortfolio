@@ -46,7 +46,7 @@ public class WerkstofflieferantIntegrationTest {
     public void updateWerkstofflieferant() {
         Werkstofflieferant werkstofflieferant = createNewWerkstofflieferant();
         werkstofflieferant.setErfahrung(63);
-        Werkstofflieferant updatedWerkstofflieferant = werkstofflieferantRepository.updateWithMerge(werkstofflieferant);
+        Werkstofflieferant updatedWerkstofflieferant = werkstofflieferantRepository.update(werkstofflieferant);
 
         assertThat(updatedWerkstofflieferant, is(werkstofflieferant));
     }
@@ -54,7 +54,7 @@ public class WerkstofflieferantIntegrationTest {
     @Test
     public void deleteWerkstofflieferant() {
         Werkstofflieferant werkstofflieferant = createNewWerkstofflieferant();
-        werkstofflieferantRepository.deleteEntity(werkstofflieferant);
+        werkstofflieferantRepository.delete(werkstofflieferant);
 
         Werkstofflieferant deletedWerkstofflieferant =
                 werkstofflieferantRepository.findById(werkstofflieferant.getLieferantId());
@@ -71,7 +71,7 @@ public class WerkstofflieferantIntegrationTest {
         werkstofflieferant.setStrasse("Stammweg");
         werkstofflieferant.setTelefonnummer("0360555970");
 
-        Werkstofflieferant savedWerkstofflieferant = werkstofflieferantRepository.createEntity(werkstofflieferant);
+        Werkstofflieferant savedWerkstofflieferant = werkstofflieferantRepository.save(werkstofflieferant);
 
         assertNotNull(savedWerkstofflieferant.getLieferantId());
         assertThat(werkstofflieferant.getName(), is("Eichsfeld Holz GmbH"));

@@ -43,7 +43,7 @@ public class SkizzeIntegrationTest {
     public void updateSkizze(){
         Skizze skizze = createNewSkizze();
         skizze.setDetailgrad("hoch");
-        Skizze updatedSkizze = skizzeRepository.updateWithMerge(skizze);
+        Skizze updatedSkizze = skizzeRepository.update(skizze);
 
         assertThat(updatedSkizze, is(skizze));
     }
@@ -51,7 +51,7 @@ public class SkizzeIntegrationTest {
     @Test
     public void deleteSkizze(){
         Skizze skizze = createNewSkizze();
-        skizzeRepository.deleteEntity(skizze);
+        skizzeRepository.delete(skizze);
 
         Skizze deletedSkizze = skizzeRepository.findById(skizze.getSkizzeId());
         assertNull(deletedSkizze);
@@ -64,7 +64,7 @@ public class SkizzeIntegrationTest {
         skizze.setFlaeche(500);
         skizze.setRaum("Raum");
 
-        Skizze savedSkizze = skizzeRepository.createEntity(skizze);
+        Skizze savedSkizze = skizzeRepository.save(skizze);
 
         assertNotNull(savedSkizze.getSkizzeId());
         assertThat(skizze.getDetailgrad(), is("sehr hoch"));

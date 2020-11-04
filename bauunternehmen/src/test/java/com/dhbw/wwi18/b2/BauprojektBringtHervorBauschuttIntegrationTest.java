@@ -45,7 +45,7 @@ public class BauprojektBringtHervorBauschuttIntegrationTest {
         List<Bauschutt> bauschuttList = Arrays.asList(bauschutt1, bauschutt2);
         bauprojekt.setBauschuttList(bauschuttList);
 
-        Bauprojekt savedBauschutt = bauprojektRepository.updateWithMerge(bauprojekt);
+        Bauprojekt savedBauschutt = bauprojektRepository.update(bauprojekt);
         Bauschutt savedBauschutt1 = bauschuttRepository.findById(bauschutt1.getBauschuttId());
         Bauschutt savedBauschutt2 = bauschuttRepository.findById(bauschutt2.getBauschuttId());
 
@@ -64,7 +64,7 @@ public class BauprojektBringtHervorBauschuttIntegrationTest {
         List<Bauprojekt> bauprojektList = Arrays.asList(bauprojekt1, bauprojekt2);
         bauschutt.setBauprojektList(bauprojektList);
 
-        Bauschutt savedBauschutt = bauschuttRepository.updateWithMerge(bauschutt);
+        Bauschutt savedBauschutt = bauschuttRepository.update(bauschutt);
         Bauprojekt savedBauprojekt1 = bauprojektRepository.findById(bauprojekt1.getBauprojektId());
         Bauprojekt savedBauprojekt2 = bauprojektRepository.findById(bauprojekt2.getBauprojektId());
 
@@ -81,7 +81,7 @@ public class BauprojektBringtHervorBauschuttIntegrationTest {
         bauprojekt.setGewinn(500000);
         bauprojekt.setKosten(250000);
 
-        return bauprojektRepository.createEntity(bauprojekt);
+        return bauprojektRepository.save(bauprojekt);
 
     }
 
@@ -92,6 +92,6 @@ public class BauprojektBringtHervorBauschuttIntegrationTest {
         bauschutt.setKilopreis(3);
         bauschutt.setMenge(7);
 
-        return bauschuttRepository.createEntity(bauschutt);
+        return bauschuttRepository.save(bauschutt);
     }
 }

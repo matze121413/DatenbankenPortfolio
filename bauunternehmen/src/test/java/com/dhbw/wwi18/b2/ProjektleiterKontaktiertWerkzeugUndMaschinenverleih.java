@@ -48,9 +48,9 @@ public class ProjektleiterKontaktiertWerkzeugUndMaschinenverleih {
         werkzeugUndMaschinenverleih2.setProjektleiter(projektleiter);
 
         WerkzeugUndMaschinenverleih savedWerkzeugUndMaschinenverleih1 =
-                verleihRepository.updateWithMerge(werkzeugUndMaschinenverleih1);
+                verleihRepository.update(werkzeugUndMaschinenverleih1);
         WerkzeugUndMaschinenverleih savedWerkzeugUndMaschinenverleih2 =
-                verleihRepository.updateWithMerge(werkzeugUndMaschinenverleih2);
+                verleihRepository.update(werkzeugUndMaschinenverleih2);
 
         assertThat(savedWerkzeugUndMaschinenverleih1.getProjektleiter(), is(projektleiter));
         assertThat(savedWerkzeugUndMaschinenverleih2.getProjektleiter(), is(projektleiter));
@@ -64,7 +64,7 @@ public class ProjektleiterKontaktiertWerkzeugUndMaschinenverleih {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        return mitarbeiterRepository.createEntity(mitarbeiter);
+        return mitarbeiterRepository.save(mitarbeiter);
     }
 
     private Projektleiter createNewProjektleiter(Mitarbeiter savedMitarbeiter) {
@@ -74,7 +74,7 @@ public class ProjektleiterKontaktiertWerkzeugUndMaschinenverleih {
         projektleiter.setMitarbeiter(savedMitarbeiter);
         projektleiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        return projektleiterRepository.createEntity(projektleiter);
+        return projektleiterRepository.save(projektleiter);
     }
 
     private WerkzeugUndMaschinenverleih createNewWerkzeugUndMaschinenverleih() {
@@ -85,6 +85,6 @@ public class ProjektleiterKontaktiertWerkzeugUndMaschinenverleih {
         werkzeugUndMaschinenverleih.setPlz("68305");
         werkzeugUndMaschinenverleih.setStrasse("Carl-Reuther-Straße");
         werkzeugUndMaschinenverleih.setTelefonnummer("0621-43715-500");
-        return verleihRepository.createEntity(werkzeugUndMaschinenverleih);
+        return verleihRepository.save(werkzeugUndMaschinenverleih);
     }
 }

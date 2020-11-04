@@ -50,7 +50,7 @@ public class RechnungIntegrationTest {
     public void updateRechnung(){
         Rechnung rechnung = createNewRechnung();
         rechnung.setPreis(5000000);
-        Rechnung updatedRechnung = rechnungRepository.updateWithMerge(rechnung);
+        Rechnung updatedRechnung = rechnungRepository.update(rechnung);
 
         assertThat(updatedRechnung, is(rechnung));
     }
@@ -58,7 +58,7 @@ public class RechnungIntegrationTest {
     @Test
     public void deleteRechnung(){
         Rechnung rechnung = createNewRechnung();
-        rechnungRepository.deleteEntity(rechnung);
+        rechnungRepository.delete(rechnung);
 
         Rechnung deletedRechnung = rechnungRepository.findById(rechnung.getRechnungId());
         assertNull(deletedRechnung);
@@ -73,7 +73,7 @@ public class RechnungIntegrationTest {
         rechnung.setFrist(16101996);
         rechnung.setVertrag(createNewVertrag());
 
-        Rechnung savedRechnung = rechnungRepository.createEntity(rechnung);
+        Rechnung savedRechnung = rechnungRepository.save(rechnung);
 
         assertNotNull(savedRechnung.getRechnungId());
         assertThat(rechnung.getPreis(), is(2000000));
@@ -87,6 +87,6 @@ public class RechnungIntegrationTest {
         vertrag.setLaufzeit(30);
         vertrag.setGegenstand("Haus");
 
-        return vertragRepository.createEntity(vertrag);
+        return vertragRepository.save(vertrag);
     }
 }

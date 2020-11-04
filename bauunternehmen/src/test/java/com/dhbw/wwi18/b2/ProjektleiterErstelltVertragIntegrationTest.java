@@ -48,8 +48,8 @@ public class ProjektleiterErstelltVertragIntegrationTest {
         vertrag1.setProjektleiter(projektleiter);
         vertrag2.setProjektleiter(projektleiter);
 
-        Vertrag savedVertrag1 = vertragRepository.updateWithMerge(vertrag1);
-        Vertrag savedVertrag2 = vertragRepository.updateWithMerge(vertrag2);
+        Vertrag savedVertrag1 = vertragRepository.update(vertrag1);
+        Vertrag savedVertrag2 = vertragRepository.update(vertrag2);
 
         assertThat(savedVertrag1.getProjektleiter(), is(projektleiter));
         assertThat(savedVertrag2.getProjektleiter(), is(projektleiter));
@@ -64,7 +64,7 @@ public class ProjektleiterErstelltVertragIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        return mitarbeiterRepository.createEntity(mitarbeiter);
+        return mitarbeiterRepository.save(mitarbeiter);
     }
 
     private Projektleiter createNewProjektleiter(Mitarbeiter savedMitarbeiter) {
@@ -74,7 +74,7 @@ public class ProjektleiterErstelltVertragIntegrationTest {
         projektleiter.setMitarbeiter(savedMitarbeiter);
         projektleiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        return projektleiterRepository.createEntity(projektleiter);
+        return projektleiterRepository.save(projektleiter);
     }
 
     private Vertrag createNewVertrag(){
@@ -84,7 +84,7 @@ public class ProjektleiterErstelltVertragIntegrationTest {
         vertrag.setLaufzeit(30);
         vertrag.setGegenstand("Haus");
 
-        Vertrag savedVertrag = vertragRepository.createEntity(vertrag);
+        Vertrag savedVertrag = vertragRepository.save(vertrag);
 
         assertNotNull(savedVertrag.getVertragId());
         assertThat(vertrag.getPreis(), is(200000));
