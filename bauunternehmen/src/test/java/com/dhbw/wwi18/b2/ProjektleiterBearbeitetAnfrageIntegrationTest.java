@@ -13,7 +13,7 @@ import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ProjektleiterBearbeitetAnfrageIntegrationTest {
 
