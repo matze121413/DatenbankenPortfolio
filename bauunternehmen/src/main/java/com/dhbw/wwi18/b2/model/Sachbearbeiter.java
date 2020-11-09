@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {})
-@ToString(exclude = {})
+@EqualsAndHashCode
+@ToString
 @NoArgsConstructor
 public class Sachbearbeiter {
     @Id

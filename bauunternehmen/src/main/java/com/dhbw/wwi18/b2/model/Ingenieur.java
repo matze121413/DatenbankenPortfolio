@@ -17,8 +17,8 @@ import javax.persistence.Table;
 @Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {})
-@ToString(exclude = {})
+@EqualsAndHashCode
+@ToString
 @NoArgsConstructor
 public class Ingenieur {
 
