@@ -14,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ImmobilienIntegrationTest {
-    private static ImmobilieRepository immobilieRepository;
+    private ImmobilieRepository immobilieRepository;
 
     @BeforeAll
-    public static void setup() {immobilieRepository = new ImmobilieRepository();}
+    public void setup() {immobilieRepository = new ImmobilieRepository();}
 
     @AfterAll
-    public static void afterAll() {
+    public void afterAll() {
         immobilieRepository.closeConnection();
     }
 

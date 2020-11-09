@@ -18,19 +18,19 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ArchitektEntwirftSkizzeIntegrationTest {
 
-    private static ArchitektRepository architektRepository;
-    private static SkizzeRepository skizzeRepository;
-    private static MitarbeiterRepository mitarbeiterRepository;
+    private ArchitektRepository architektRepository;
+    private SkizzeRepository skizzeRepository;
+    private MitarbeiterRepository mitarbeiterRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         architektRepository = new ArchitektRepository();
         skizzeRepository = new SkizzeRepository();
         mitarbeiterRepository = new MitarbeiterRepository();
     }
 
     @AfterAll
-    public static void done() {
+    public void done() {
         architektRepository.closeConnection();
         skizzeRepository.closeConnection();
         mitarbeiterRepository.closeConnection();

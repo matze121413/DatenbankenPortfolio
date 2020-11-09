@@ -16,17 +16,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class VertragEnthaeltSkizzeIntegrationTest {
 
-    private static VertragRepository vertragRepository;
-    private static SkizzeRepository skizzeRepository;
+    private VertragRepository vertragRepository;
+    private SkizzeRepository skizzeRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         vertragRepository = new VertragRepository();
         skizzeRepository = new SkizzeRepository();
     }
 
     @AfterAll
-    public static void done() {
+    public void done() {
         vertragRepository.closeConnection();
         skizzeRepository.closeConnection();
     }

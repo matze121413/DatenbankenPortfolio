@@ -19,7 +19,7 @@ public class ArchitektIntegrationTest {
 
 
     private ArchitektRepository architektRepository;
-    private static MitarbeiterRepository mitarbeiterRepository;
+    private MitarbeiterRepository mitarbeiterRepository;
 
     @BeforeAll
     public void setup() {

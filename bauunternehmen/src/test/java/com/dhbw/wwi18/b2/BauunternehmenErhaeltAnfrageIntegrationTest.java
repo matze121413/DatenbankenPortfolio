@@ -13,17 +13,17 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class BauunternehmenErhaeltAnfrageIntegrationTest {
 
-    private static BauunternehmenRepository bauunternehmenRepository;
-    private static AnfrageRepository anfrageRepository;
+    private BauunternehmenRepository bauunternehmenRepository;
+    private AnfrageRepository anfrageRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         bauunternehmenRepository = new BauunternehmenRepository();
         anfrageRepository = new AnfrageRepository();
     }
 
     @AfterAll
-    public static void done() {
+    public void done() {
         bauunternehmenRepository.closeConnection();
         anfrageRepository.closeConnection();
     }

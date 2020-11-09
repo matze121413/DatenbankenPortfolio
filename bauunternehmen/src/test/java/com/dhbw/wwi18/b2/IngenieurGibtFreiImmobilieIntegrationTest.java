@@ -19,19 +19,19 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class IngenieurGibtFreiImmobilieIntegrationTest {
 
 
-    private static IngenieurRepository ingenieurRepository;
-    private static ImmobilieRepository immobilieRepository;
-    private static MitarbeiterRepository mitarbeiterRepository;
+    private IngenieurRepository ingenieurRepository;
+    private ImmobilieRepository immobilieRepository;
+    private MitarbeiterRepository mitarbeiterRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         ingenieurRepository = new IngenieurRepository();
         immobilieRepository = new ImmobilieRepository();
         mitarbeiterRepository = new MitarbeiterRepository();
     }
 
     @AfterAll
-    public static void done() {
+    public void done() {
         ingenieurRepository.closeConnection();
         immobilieRepository.closeConnection();
         mitarbeiterRepository.closeConnection();

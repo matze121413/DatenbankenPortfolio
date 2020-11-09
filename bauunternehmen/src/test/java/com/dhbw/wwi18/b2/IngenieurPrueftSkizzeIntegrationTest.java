@@ -17,19 +17,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class IngenieurPrueftSkizzeIntegrationTest {
 
-    private static IngenieurRepository ingenieurRepository;
-    private static SkizzeRepository skizzeRepository;
-    private static MitarbeiterRepository mitarbeiterRepository;
+    private IngenieurRepository ingenieurRepository;
+    private SkizzeRepository skizzeRepository;
+    private MitarbeiterRepository mitarbeiterRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         ingenieurRepository = new IngenieurRepository();
         skizzeRepository = new SkizzeRepository();
         mitarbeiterRepository = new MitarbeiterRepository();
     }
 
     @AfterAll
-    public static void done() {
+    public void done() {
         ingenieurRepository.closeConnection();
         skizzeRepository.closeConnection();
         mitarbeiterRepository.closeConnection();

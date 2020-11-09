@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class KundeIntegrationTest {
 
-    private static KundeRepository kundeRepository;
+    private KundeRepository kundeRepository;
 
     @BeforeAll
-    public static void setup() {kundeRepository = new KundeRepository();}
+    public void setup() {kundeRepository = new KundeRepository();}
 
     @AfterAll
-    public static void afterAll() {
+    public void afterAll() {
         kundeRepository.closeConnection();
     }
 

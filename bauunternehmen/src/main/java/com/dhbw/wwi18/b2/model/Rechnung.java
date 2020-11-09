@@ -42,13 +42,6 @@ public class Rechnung {
 
     @ManyToOne
     @JoinTable(
-            name = "Kunde_bezahlt_Rechnung",
-            joinColumns = {@JoinColumn(name = "rechnung_id")},
-            inverseJoinColumns = {@JoinColumn(name = "kunde_id")})
-    private Kunde kunde;
-
-    @ManyToOne
-    @JoinTable(
             name = "Sachbearbeiter_stelltAus_Rechnung",
             joinColumns = {@JoinColumn(name = "rechnung_id")},
             inverseJoinColumns = {@JoinColumn(name = "mitarbeiter_id")})
