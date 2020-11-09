@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,8 +24,8 @@ import java.util.List;
 @Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = "bautechnikList")
-@ToString(exclude = "bautechnikList")
+@EqualsAndHashCode(exclude = {"bautechnikList", "werkstoffList"})
+@ToString(exclude = {"bautechnikList", "werkstoffList"})
 @NoArgsConstructor
 public class Bauarbeiter {
 
@@ -45,11 +47,21 @@ public class Bauarbeiter {
     @JoinColumn(name = "mitarbeiter_id")
     private Mitarbeiter mitarbeiter;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name = "Bauarbeiter_verwendet_Bautechnik",
             joinColumns = { @JoinColumn(name = "mitarbeiter_id") },
             inverseJoinColumns = { @JoinColumn(name = "bautechnik_id") }
     )
     private List<Bautechnik> bautechnikList = new ArrayList<>();
+
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(
+            name = "Bauarbeiter_verwendet_Werkstoff",
+            joinColumns = { @JoinColumn(name = "mitarbeiter_id") },
+            inverseJoinColumns = { @JoinColumn(name = "werkstoff_id") }
+    )
+    private List<Werkstoff> werkstoffList = new ArrayList<>();
 }

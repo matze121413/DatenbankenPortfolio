@@ -24,8 +24,8 @@ import java.util.List;
 @Table
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"bauprojektList", "werkstofflieferantList"})
-@ToString(exclude = {"bauprojektList", "werkstofflieferantList"})
+@EqualsAndHashCode(exclude = {"bauprojektList", "werkstofflieferantList", "bauarbeiterList"})
+@ToString(exclude = {"bauprojektList", "werkstofflieferantList", "bauarbeiterList"})
 @NoArgsConstructor
 public class Werkstoff {
     @Id
@@ -58,4 +58,13 @@ public class Werkstoff {
             inverseJoinColumns = {@JoinColumn(name = "lieferant_id")}
     )
     private List<Werkstofflieferant> werkstofflieferantList = new ArrayList<>();
+
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(
+            name = "Bauarbeiter_verwendet_Werkstoff",
+            joinColumns = { @JoinColumn(name = "werkstoff_id") },
+            inverseJoinColumns = { @JoinColumn(name = "mitarbeiter_id") }
+    )
+    private List<Bauarbeiter> bauarbeiterList = new ArrayList<>();
 }
