@@ -53,11 +53,7 @@ public class VertragEnthaeltSkizzeIntegrationTest {
         skizze.setFlaeche(500);
         skizze.setRaum("Raum");
 
-        Skizze savedSkizze = skizzeRepository.save(skizze);
-
-        assertNotNull(savedSkizze.getSkizzeId());
-        assertThat(skizze.getDetailgrad(), is("sehr hoch"));
-        return savedSkizze;
+        return skizzeRepository.save(skizze);
     }
     private Vertrag createNewVertrag(){
         Vertrag vertrag = new Vertrag();
@@ -66,10 +62,6 @@ public class VertragEnthaeltSkizzeIntegrationTest {
         vertrag.setLaufzeit(30);
         vertrag.setGegenstand("Haus");
 
-        Vertrag savedVertrag = vertragRepository.save(vertrag);
-
-        assertNotNull(savedVertrag.getVertragId());
-        assertThat(vertrag.getPreis(), is(200000));
-        return savedVertrag;
+        return vertragRepository.save(vertrag);
     }
 }

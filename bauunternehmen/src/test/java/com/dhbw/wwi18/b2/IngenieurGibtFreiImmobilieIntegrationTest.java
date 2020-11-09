@@ -64,12 +64,7 @@ public class IngenieurGibtFreiImmobilieIntegrationTest {
         ingenieur.setMitarbeiter(savedMitarbeiter);
         ingenieur.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        ingenieur = ingenieurRepository.save(ingenieur);
-
-        assertThat(ingenieur.getStrasse(), is("im Sand"));
-        assertThat(ingenieur.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));
-
-        return ingenieur;
+        return ingenieurRepository.save(ingenieur);
     }
     private Mitarbeiter createNewMitarbeiter() {
         Mitarbeiter mitarbeiter = new Mitarbeiter();
@@ -88,11 +83,7 @@ public class IngenieurGibtFreiImmobilieIntegrationTest {
         immobilie.setStatus("fertig");
         immobilie.setFlaeche(150);
 
-        Immobilie savedImmobilie = immobilieRepository.save(immobilie);
-
-        assertNotNull(savedImmobilie.getImmobilieId());
-        assertThat(immobilie.getFarbe(), is("gelb"));
-        return savedImmobilie;
+        return immobilieRepository.save(immobilie);
     }
 
 

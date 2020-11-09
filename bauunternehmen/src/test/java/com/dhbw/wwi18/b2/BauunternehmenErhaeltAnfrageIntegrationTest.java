@@ -56,11 +56,7 @@ public class BauunternehmenErhaeltAnfrageIntegrationTest {
         bauunternehmen.setOrt("Kaiserslautern");
         bauunternehmen.setPlz("53604");
 
-        Bauunternehmen savedBauunternehmen = bauunternehmenRepository.save(bauunternehmen);
-
-        assertNotNull(savedBauunternehmen.getUnternehmenId());
-        assertThat(bauunternehmen.getName(), is("BobDerMeister"));
-        return savedBauunternehmen;
+        return bauunternehmenRepository.save(bauunternehmen);
     }
 
     private Anfrage createNewAnfrage(){
@@ -73,10 +69,6 @@ public class BauunternehmenErhaeltAnfrageIntegrationTest {
         anfrage.setFarbe("rot");
         anfrage.setPreisvorstellung(500000);
 
-        Anfrage savedAnfrage = anfrageRepository.save(anfrage);
-
-        assertNotNull(savedAnfrage.getAnfrageId());
-        assertThat(anfrage.getStrasse(), is("Binger"));
-        return savedAnfrage;
+        return anfrageRepository.save(anfrage);
     }
 }

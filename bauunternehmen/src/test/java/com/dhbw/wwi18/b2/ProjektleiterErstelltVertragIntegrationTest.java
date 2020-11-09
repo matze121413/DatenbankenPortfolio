@@ -84,10 +84,6 @@ public class ProjektleiterErstelltVertragIntegrationTest {
         vertrag.setLaufzeit(30);
         vertrag.setGegenstand("Haus");
 
-        Vertrag savedVertrag = vertragRepository.save(vertrag);
-
-        assertNotNull(savedVertrag.getVertragId());
-        assertThat(vertrag.getPreis(), is(200000));
-        return savedVertrag;
+        return vertragRepository.save(vertrag);
     }
 }

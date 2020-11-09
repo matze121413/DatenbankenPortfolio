@@ -72,11 +72,7 @@ public class ArchitektEntwirftSkizzeIntegrationTest {
         skizze.setFlaeche(500);
         skizze.setRaum("Raum");
 
-        Skizze savedSkizze = skizzeRepository.save(skizze);
-
-        assertNotNull(savedSkizze.getSkizzeId());
-        assertThat(skizze.getDetailgrad(), is("sehr hoch"));
-        return savedSkizze;
+        return skizzeRepository.save(skizze);
     }
 
     private Architekt createNewArchitekt(Mitarbeiter savedMitarbeiter){
@@ -88,11 +84,7 @@ public class ArchitektEntwirftSkizzeIntegrationTest {
         architekt.setOrt("Köln");
         architekt.setPlz("50667");
         architekt.setFachrichtung("Aussenarchitekt");
-        architekt = architektRepository.save(architekt);
 
-        assertThat(architekt.getStrasse(), is("Pfad"));
-        assertThat(architekt.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));
-
-        return architekt;
+        return architektRepository.save(architekt);
     }
 }

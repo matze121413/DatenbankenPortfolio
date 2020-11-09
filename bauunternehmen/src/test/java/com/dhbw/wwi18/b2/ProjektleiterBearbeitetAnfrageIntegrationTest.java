@@ -85,10 +85,6 @@ public class ProjektleiterBearbeitetAnfrageIntegrationTest {
         anfrage.setFarbe("rot");
         anfrage.setPreisvorstellung(500000);
 
-        Anfrage savedAnfrage = anfrageRepository.save(anfrage);
-
-        assertNotNull(savedAnfrage.getAnfrageId());
-        assertThat(anfrage.getStrasse(), is("Binger"));
-        return savedAnfrage;
+        return anfrageRepository.save(anfrage);
     }
 }

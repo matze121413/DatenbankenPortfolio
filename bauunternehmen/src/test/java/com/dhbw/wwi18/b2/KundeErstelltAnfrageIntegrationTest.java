@@ -57,11 +57,7 @@ public class KundeErstelltAnfrageIntegrationTest {
         kunde.setOrt("Berlin");
         kunde.setPlz("53343");
 
-        Kunde savedKunde = kundeRepository.save(kunde);
-
-        assertNotNull(savedKunde.getKundeId());
-        assertThat(kunde.getStrasse(), is("Berliner Weg"));
-        return savedKunde;
+        return kundeRepository.save(kunde);
     }
 
     private Anfrage createNewAnfrage(){
@@ -74,10 +70,6 @@ public class KundeErstelltAnfrageIntegrationTest {
         anfrage.setFarbe("rot");
         anfrage.setPreisvorstellung(500000);
 
-        Anfrage savedAnfrage = anfrageRepository.save(anfrage);
-
-        assertNotNull(savedAnfrage.getAnfrageId());
-        assertThat(anfrage.getStrasse(), is("Binger"));
-        return savedAnfrage;
+        return anfrageRepository.save(anfrage);
     }
 }

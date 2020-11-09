@@ -79,11 +79,7 @@ public class SachbearbeiterStelltAusRechnungIntegrationTest {
         rechnung.setFrist(16101996);
         rechnung.setVertrag(createNewVertrag());
 
-        Rechnung savedRechnung = rechnungRepository.save(rechnung);
-
-        assertNotNull(savedRechnung.getRechnungId());
-        assertThat(rechnung.getPreis(), is(2000000));
-        return savedRechnung;
+        return rechnungRepository.save(rechnung);
     }
 
     private Vertrag createNewVertrag() {
@@ -102,11 +98,6 @@ public class SachbearbeiterStelltAusRechnungIntegrationTest {
         sachbearbeiter.setMitarbeiter(savedMitarbeiter);
         sachbearbeiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        sachbearbeiter = sachbearbeiterRepository.save(sachbearbeiter);
-
-        assertThat(sachbearbeiter.getTarif(), is(5));
-        assertThat(sachbearbeiter.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));
-
-        return sachbearbeiter;
+        return sachbearbeiterRepository.save(sachbearbeiter);
     }
 }

@@ -56,11 +56,7 @@ public class KundeErhaeltVertragIntegrationTest {
         kunde.setOrt("Berlin");
         kunde.setPlz("53343");
 
-        Kunde savedKunde = kundeRepository.save(kunde);
-
-        assertNotNull(savedKunde.getKundeId());
-        assertThat(kunde.getStrasse(), is("Berliner Weg"));
-        return savedKunde;
+        return kundeRepository.save(kunde);
     }
 
     private Vertrag createNewVertrag(){
@@ -70,10 +66,6 @@ public class KundeErhaeltVertragIntegrationTest {
         vertrag.setLaufzeit(30);
         vertrag.setGegenstand("Haus");
 
-        Vertrag savedVertrag = vertragRepository.save(vertrag);
-
-        assertNotNull(savedVertrag.getVertragId());
-        assertThat(vertrag.getPreis(), is(200000));
-        return savedVertrag;
+        return vertragRepository.save(vertrag);
     }
 }

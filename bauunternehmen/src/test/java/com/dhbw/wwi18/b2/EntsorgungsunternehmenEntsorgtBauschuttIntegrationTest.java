@@ -57,11 +57,7 @@ public class EntsorgungsunternehmenEntsorgtBauschuttIntegrationTest {
         entsorgungsunternehmen.setName("AVR");
         entsorgungsunternehmen.setTelefonnummer("07261/931-0");
 
-        Entsorgungsunternehmen savedEntsorgungsunternehmen =
-                entsorgungsunternehmenRepository.save(entsorgungsunternehmen);
-        assertNotNull(savedEntsorgungsunternehmen.getEntsorgungId());
-        assertThat(savedEntsorgungsunternehmen.getName(), is("AVR"));
-        return savedEntsorgungsunternehmen;
+        return entsorgungsunternehmenRepository.save(entsorgungsunternehmen);
     }
 
     private Bauschutt createNewBauschutt(){
@@ -71,10 +67,7 @@ public class EntsorgungsunternehmenEntsorgtBauschuttIntegrationTest {
         bauschutt.setKilopreis(3);
         bauschutt.setMenge(7);
 
-        Bauschutt savedBauschutt = bauschuttRepository.save(bauschutt);
-        assertNotNull(savedBauschutt.getBauschuttId());
-        assertThat(savedBauschutt.getArt(), is("Ziegel"));
-        return savedBauschutt;
+        return bauschuttRepository.save(bauschutt);
     }
 
 }

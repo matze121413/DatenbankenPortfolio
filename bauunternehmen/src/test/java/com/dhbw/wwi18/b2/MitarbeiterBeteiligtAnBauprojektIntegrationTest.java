@@ -82,10 +82,7 @@ public class MitarbeiterBeteiligtAnBauprojektIntegrationTest {
         bauprojekt.setGewinn(500000);
         bauprojekt.setKosten(250000);
 
-        Bauprojekt savedBauprojekt = bauprojektRepository.save(bauprojekt);
-        assertNotNull(savedBauprojekt.getBauprojektId());
-        assertThat(savedBauprojekt.getEndDatum(), is(20230514));
-        return savedBauprojekt;
+        return bauprojektRepository.save(bauprojekt);
     }
 
     private Mitarbeiter createNewMitarbeiter(){
@@ -96,14 +93,6 @@ public class MitarbeiterBeteiligtAnBauprojektIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        mitarbeiter = mitarbeiterRepository.save(mitarbeiter);
-
-        //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
-        assertThat(mitarbeiter.getVorname(), is("Horst"));
-        assertThat(mitarbeiter.getGehalt(), is(3000));
-        //Die MitarbeiterId sollte nicht statische erzeugt werden, kann aber nie null sein
-        assertNotNull(mitarbeiter.getMitarbeiterId());
-
-        return mitarbeiter;
+        return  mitarbeiterRepository.save(mitarbeiter);
     }
 }

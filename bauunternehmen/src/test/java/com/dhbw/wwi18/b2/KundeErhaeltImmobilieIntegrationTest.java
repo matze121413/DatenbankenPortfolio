@@ -55,11 +55,7 @@ public class KundeErhaeltImmobilieIntegrationTest {
         immobilie.setStatus("fertig");
         immobilie.setFlaeche(150);
 
-        Immobilie savedImmobilie = immobilieRepository.save(immobilie);
-
-        assertNotNull(savedImmobilie.getImmobilieId());
-        assertThat(immobilie.getFarbe(), is("gelb"));
-        return savedImmobilie;
+        return immobilieRepository.save(immobilie);
     }
     private Kunde createNewKunde(){
         Kunde kunde = new Kunde();
@@ -69,10 +65,6 @@ public class KundeErhaeltImmobilieIntegrationTest {
         kunde.setOrt("Berlin");
         kunde.setPlz("53343");
 
-        Kunde savedKunde = kundeRepository.save(kunde);
-
-        assertNotNull(savedKunde.getKundeId());
-        assertThat(kunde.getStrasse(), is("Berliner Weg"));
-        return savedKunde;
+        return kundeRepository.save(kunde);
     }
 }

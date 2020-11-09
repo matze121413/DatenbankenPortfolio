@@ -54,11 +54,7 @@ public class BauprojektStelltFertigImmobilieIntegrationTest {
         immobilie.setStatus("fertig");
         immobilie.setFlaeche(150);
 
-        Immobilie savedImmobilie = immobilieRepository.save(immobilie);
-
-        assertNotNull(savedImmobilie.getImmobilieId());
-        assertThat(immobilie.getFarbe(), is("gelb"));
-        return savedImmobilie;
+        return immobilieRepository.save(immobilie);
     }
 
     private Bauprojekt createNewBauprojekt(){
@@ -69,9 +65,6 @@ public class BauprojektStelltFertigImmobilieIntegrationTest {
         bauprojekt.setGewinn(500000);
         bauprojekt.setKosten(250000);
 
-        Bauprojekt savedBauprojekt = bauprojektRepository.save(bauprojekt);
-        assertNotNull(savedBauprojekt.getBauprojektId());
-        assertThat(savedBauprojekt.getEndDatum(), is(20230514));
-        return savedBauprojekt;
+        return bauprojektRepository.save(bauprojekt);
     }
 }

@@ -63,15 +63,7 @@ public class ProjektleiterKontaktiertArchitektIntegrationTest {
         mitarbeiter.setGehalt(3000);
         mitarbeiter.setBerufserfahrung(20);
 
-        mitarbeiter = mitarbeiterRepository.save(mitarbeiter);
-
-        //stichprobenartig Felder testen, da davon ausgegangen werden kann, dass Erstellung damit funktioniert hat
-        assertThat(mitarbeiter.getVorname(), is("Horst"));
-        assertThat(mitarbeiter.getGehalt(), is(3000));
-        //Die MitarbeiterId sollte nicht statische erzeugt werden, kann aber nie null sein
-        assertNotNull(mitarbeiter.getMitarbeiterId());
-
-        return mitarbeiter;
+       return mitarbeiterRepository.save(mitarbeiter);
     }
 
     private Projektleiter createNewProjektleiter(Mitarbeiter savedMitarbeiter) {
@@ -81,12 +73,7 @@ public class ProjektleiterKontaktiertArchitektIntegrationTest {
         projektleiter.setMitarbeiter(savedMitarbeiter);
         projektleiter.setMitarbeiterId(savedMitarbeiter.getMitarbeiterId());
 
-        projektleiter = projektleiterRepository.save(projektleiter);
-
-        assertThat(projektleiter.getGesamtProjektanzahl(), is(42));
-        assertThat(projektleiter.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));
-
-        return projektleiter;
+        return projektleiterRepository.save(projektleiter);
     }
 
     private Architekt createNewArchitekt(Mitarbeiter savedMitarbeiter) {
@@ -98,11 +85,7 @@ public class ProjektleiterKontaktiertArchitektIntegrationTest {
         architekt.setOrt("Köln");
         architekt.setPlz("50667");
         architekt.setFachrichtung("Aussenarchitekt");
-        architekt = architektRepository.save(architekt);
 
-        assertThat(architekt.getStrasse(), is("Pfad"));
-        assertThat(architekt.getMitarbeiterId(), is(savedMitarbeiter.getMitarbeiterId()));
-
-        return architekt;
+        return architektRepository.save(architekt);
     }
 }
