@@ -7,10 +7,13 @@ import com.dhbw.wwi18.b2.repositories.BauunternehmenRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BauunternehmenErhaeltAnfrageIntegrationTest {
 
     private BauunternehmenRepository bauunternehmenRepository;
