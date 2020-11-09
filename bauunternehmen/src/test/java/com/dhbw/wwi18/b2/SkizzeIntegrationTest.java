@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class SkizzeIntegrationTest {
 
-    private static SkizzeRepository skizzeRepository;
+    private SkizzeRepository skizzeRepository;
 
     @BeforeAll
-    public static void setup() {skizzeRepository = new SkizzeRepository();}
+    public void setup() {skizzeRepository = new SkizzeRepository();}
 
     @AfterAll
-    public static void afterAll() {
+    public void afterAll() {
         skizzeRepository.closeConnection();
     }
 

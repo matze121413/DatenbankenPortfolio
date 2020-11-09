@@ -17,17 +17,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class BauprojektStelltFertigImmobilieIntegrationTest {
 
 
-    private static BauprojektRepository bauprojektRepository;
-    private static ImmobilieRepository immobilieRepository;
+    private BauprojektRepository bauprojektRepository;
+    private ImmobilieRepository immobilieRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         bauprojektRepository = new BauprojektRepository();
         immobilieRepository = new ImmobilieRepository();
     }
 
     @AfterAll
-    public static void done() {
+    public void done() {
         bauprojektRepository.closeConnection();
         immobilieRepository.closeConnection();
     }

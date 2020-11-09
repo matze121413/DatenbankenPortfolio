@@ -17,19 +17,19 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ProjektleiterBearbeitetAnfrageIntegrationTest {
 
-    private static ProjektleiterRepository projektleiterRepository;
-    private static AnfrageRepository anfrageRepository;
-    private static MitarbeiterRepository mitarbeiterRepository;
+    private ProjektleiterRepository projektleiterRepository;
+    private AnfrageRepository anfrageRepository;
+    private MitarbeiterRepository mitarbeiterRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         projektleiterRepository = new ProjektleiterRepository();
         anfrageRepository = new AnfrageRepository();
         mitarbeiterRepository = new MitarbeiterRepository();
     }
 
     @AfterAll
-    public static void done() {
+    public void done() {
         projektleiterRepository.closeConnection();
         anfrageRepository.closeConnection();
         mitarbeiterRepository.closeConnection();

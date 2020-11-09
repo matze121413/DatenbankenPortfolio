@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class VertragIntegrationTest {
 
-    private static VertragRepository vertragRepository;
+    private VertragRepository vertragRepository;
 
     @BeforeAll
-    public static void setup() {vertragRepository = new VertragRepository();}
+    public void setup() {vertragRepository = new VertragRepository();}
 
     @AfterAll
-    public static void afterAll() {
+    public void afterAll() {
         vertragRepository.closeConnection();
     }
 

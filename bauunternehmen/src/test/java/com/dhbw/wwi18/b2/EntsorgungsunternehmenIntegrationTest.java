@@ -14,16 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class EntsorgungsunternehmenIntegrationTest {
-    private static EntsorgungsunternehmenRepository entsorgungsunternehmenRepository;
+    private EntsorgungsunternehmenRepository entsorgungsunternehmenRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         entsorgungsunternehmenRepository = new EntsorgungsunternehmenRepository();
     }
 
 
     @AfterAll
-    public static void afterAll() {
+    public void afterAll() {
         entsorgungsunternehmenRepository.closeConnection();
     }
 

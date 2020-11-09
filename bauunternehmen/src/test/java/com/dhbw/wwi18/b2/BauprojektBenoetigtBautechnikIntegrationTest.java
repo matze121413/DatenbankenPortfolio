@@ -80,10 +80,7 @@ public class BauprojektBenoetigtBautechnikIntegrationTest {
         bauprojekt.setGewinn(500000);
         bauprojekt.setKosten(250000);
 
-        Bauprojekt savedBauprojekt = bauprojektRepository.save(bauprojekt);
-        assertNotNull(savedBauprojekt.getBauprojektId());
-        assertThat(savedBauprojekt.getEndDatum(), is(20230514));
-        return savedBauprojekt;
+        return bauprojektRepository.save(bauprojekt);
     }
 
     private Bautechnik createNewBautechnik(){

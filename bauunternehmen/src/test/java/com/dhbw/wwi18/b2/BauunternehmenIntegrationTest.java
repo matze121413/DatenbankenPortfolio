@@ -15,15 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BauunternehmenIntegrationTest {
 
-    private static BauunternehmenRepository bauunternehmenRepository;
+    private BauunternehmenRepository bauunternehmenRepository;
 
     @BeforeAll
-    public static void setup() {
+    public void setup() {
         bauunternehmenRepository = new BauunternehmenRepository();
     }
 
     @AfterAll
-    public static void afterAll() {
+    public void afterAll() {
         bauunternehmenRepository.closeConnection();
     }
 
